@@ -1,4 +1,4 @@
-# nSVPInterpolate Script v2.0
+# nSVPScript Script v2.0
 # by: neon-nyan
 # ----------------------------------------------------------
 # This script version used for Anime or any 2D Animation

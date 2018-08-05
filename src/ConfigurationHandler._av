@@ -1,4 +1,4 @@
-# nSVPInterpolate Script v2.0
+# nSVPScript Script v2.0
 # by: neon-nyan
 # ----------------------------------------------------------
 # 
@@ -7,7 +7,7 @@ function NO()
     {return NOP}
 
 /*
-* nSVPInterpolate Preset Configuration handler
+* nSVPScript Preset Configuration handler
 */
 p = preset
  (p == 1) ? Eval("""
@@ -128,7 +128,7 @@ function nNumSeparate(float "in", int "start", int "length", float "divide")
 # Import the User settings after import the default one.
 Import(dConf)
 
-function nSVPInterpolate()
+function nSVPScript()
 {
     Assert(Exist(dirBin + "svpflow1.dll") && Exist(dirBin + "svpflow2.dll") ? true : false,\
         "Plugin doesn't exist! | Download at: https://www.svp-team.com/wiki/Manual:SVPflow")
@@ -137,7 +137,7 @@ function nSVPInterpolate()
     Interpolate(input)
 }
 
-function nSVPInterpolate64()
+function nSVPScript64()
 {
     Assert(Exist(dirBin64 + "svpflow1.dll") && Exist(dirBin64 + "svpflow2.dll") ? true : false,\
         "Plugin doesn't exist! | Download at: https://www.svp-team.com/wiki/Manual:SVPflow")

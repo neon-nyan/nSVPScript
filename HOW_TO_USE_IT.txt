@@ -6,10 +6,10 @@ Note: Don't forget to convert the input clip into YV12.
 
 First, import the _main.avs in your Script using Import() function
 e.g.
-    Import("C:\your\waifu\is\a\trash\nSVPInterpolate\_main.avs")
+    Import("C:\your\waifu\is\a\trash\nSVPScript\_main.avs")
 
-then, add nSVPInterpolate() function in your Avisynth Script...
-or nSVPInterpolate64() if you're running on x64 Avisynth MT.
+then, add nSVPScript() function in your Avisynth Script...
+or nSVPScript64() if you're running on x64 Avisynth MT.
 and voila!!!, your video run interpolated by SVPFlow. Horray!!! :D
 
 P.S. You can also configure your own configs or another
