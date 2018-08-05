@@ -1,0 +1,13 @@
+# nSVPInterpolate Script v2.0
+# by: neon-nyan
+# ----------------------------------------------------------
+# 
+
+global super_params     = """
+{
+    pel:""" + String(pixel_precision) + """,
+    scale:{up:2,down:4},
+    gpu:""" + String(gpu_accel) + """,
+    full:true
+}
+"""

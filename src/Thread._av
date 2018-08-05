@@ -1,0 +1,7 @@
+# nSVPInterpolate Script v2.0
+# by: neon-nyan
+# ----------------------------------------------------------
+#
+
+SetMemoryMax(memory_max)
+SetFilterMTMode("DEFAULT_MT_MODE",2)

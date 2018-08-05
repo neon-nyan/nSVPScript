@@ -1,0 +1,35 @@
+# nSVPInterpolate Script v2.0
+# by: neon-nyan
+# ----------------------------------------------------------
+# 
+
+global smoothfps_params = """
+{
+    gpuid:""" + String(gpu_id) + """,
+    cubic:""" + String(gpu_accel) + """,
+    rate:{
+        num:""" + String(framerate_num) + """,
+        den:""" + String(framerate_den) + """,
+        abs:""" + String(framerate_mul) + """
+    },
+    algo:""" + String(interpolate_mode) + """,
+    block:false,
+    mask:{
+        cover:""" + String(mask_cover) + """,
+        area:""" + String(mask_area) + """,
+        area_sharp:1.0
+    },
+    scene:{
+        mode:3,
+        blend:""" + String(blend_frame) + """,
+        limits:{
+            m1:1800,
+            m2:3150,
+            scene:4500,
+            zero:""" + String(Round((coarse_max * 16) / 100)) + """,
+            blocks:""" + String(Round(((coarse_max * 2.4) / 100) + lambda)) + """
+        },
+        luma:1.75
+    }
+}
+"""

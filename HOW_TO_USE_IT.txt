@@ -1,0 +1,23 @@
+How to use it?
+...
+It's too pretty simple AF :)
+
+Note: Don't forget to convert the input clip into YV12.
+
+First, import the _main.avs in your Script using Import() function
+e.g.
+    Import("C:\your\waifu\is\a\trash\nSVPInterpolate\_main.avs")
+
+then, add nSVPInterpolate() function in your Avisynth Script...
+or nSVPInterpolate64() if you're running on x64 Avisynth MT.
+and voila!!!, your video run interpolated by SVPFlow. Horray!!! :D
+
+P.S. You can also configure your own configs or another
+     codes that you've wrote in Settings/UserSettings.ini BTW
+     note: See Settings/Default.ini for future config guides.
+
+Some note again:
+    Enable "Buffer back/ahead". Then, set value to 16 and 32 if you
+    play it with demo_mode turns on.
+
+- the creator: neon-nyan | github.com/neon-nyan

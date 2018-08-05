@@ -1,0 +1,30 @@
+# nSVPInterpolate Script v2.0
+# by: neon-nyan
+# ----------------------------------------------------------
+# 
+
+global max_memory=1024
+
+global framerate_num=60
+global framerate_den=1
+global framerate_mul=true
+
+global interpolate_mode=21
+global pixel_precision=1
+global blend_frame=false
+
+global block_w=16
+global block_h=16
+global block_overlap=2
+
+global search_method=4
+global search_range=8
+
+global coarse_max=700
+global satd=true
+global satd_inCoarse=false
+
+global lambda=2
+
+global mask_cover=100
+global mask_area=50

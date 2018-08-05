@@ -1,0 +1,175 @@
+nSVPScript [neon's SVPFlow script for Avisynth]
+----------------------------------------------------------------
+
+Note:
+    [+] Added feature or any changes and improvements
+    [-] Removed feature
+    [#] Bug fixes
+
+[Release Notes]
+
+- v2.0   [August 5th, 2018][Stable]
+    note: This update focused to improve processing
+          performance, Improvement of frame quality, cut scenes
+          detection and support of GPU acceleration.
+
+          It may take an issue with some older PC
+          that doesn't support OpenCL acceleration. For prevent
+          that, you can try to disable it with gpu_accel = false
+
+    + Re-factor some code styles to be more acceptable.
+    + Set max_memory value -> 1024 or -/+ 4GB.
+    + Set Max CPU threads usage -> 5 threads.
+    + Set mask area value -> 32 for better cover/uncovering
+      result.
+    + Enable OpenCL GPU acceleration by default.
+    + Change vector grip size -> 16x16 with 0 overlap by
+      default.
+    + Change search_method -> 2 [Hexagon search].
+    + Make demo frames syncronized again.
+    + Make blend_frame mode enabled by default.
+    + Re-align frame size in demo into correct value.
+    + Performance increases in demo_mode.
+      Note: if you're using ffdshow, make sure that
+      "Buffer back/ahead" was enabled before.
+    + Decrease search_range value -> 5.
+    + Normalize scene limit values in smoothfps_params variable.
+      It increases smoothness of frame a bit.
+    + Normalize refine's thsad values in analyse_params
+      variable. It also increases mask quality and small
+      improvement of Cut Scenes detection. :3
+    + Decrease coarse_max value -> 1500.
+    + Now automatically using Cubic instead of Bilinear for
+      interpolation when GPU acceleration activated.
+    + Set lambda for motion vectors pinalty value -> 10.
+    + Make SVAnalyse be able to using GPU acceleration if
+      it was Enabled.
+    + Change Default_MT_MODE -> mode 2.
+    + Use Assert() instead of Subtitle() and logic for displays
+      error and warning messages for now.
+    + Add boolean value type to warner.
+    + Move vertical stack frame mode in demo to demo_type = 2
+    + Evaluate demo types as list.
+    + Add new demo types. These are:
+        1   =   Horizontal stack frame. [Default]
+        2   =   Vertical stack frame.
+        3   =   Frame difference in chroma.
+                [requires MaskTools 2]
+      you can switch between these types with
+      demo_type = [number]
+    + Make framerate conversion in demo mode more accurate.
+    + Add subfunction nNumSeparate() for separate float from
+      its fraction.
+    + Use Round() instead of Floor() to Rounding floats.
+    + Remove ParamCustomConfig class because it will not be used
+      for futher reason, All new configurations now written
+      in ConfigurationHandler class. ;)
+    + Add clip scaling feature. To activate it, write:
+      "global scale=true" in your configuration file.
+    + Add Preset feature. To activate it, write:
+      "global preset=[number_of_preset_index]" in your
+      configuration file.
+    + Revamp version system more simple to manage. :\_/
+    + Override _init input to scaled input if scale == true.
+    + Change the project name to nSVPScript.
+    + Now, it is available on GitHub. :D
+    - Remove "install.bat". 'Coz scripts can load all of
+      working directory automatically now. OwO)/
+    - Remove ConvertToYV12() function.
+    - Remove linear_interpolate option.
+    - Remove Prefetch() function from main function.
+    # Gives all Motion search range to negative values.
+    # Fix search_method 2 and 3 gives invalid motion search
+      value.
+    # Quality increases on Cutscene Detection and masking by
+      normalize all internal value calculation more
+      accurate and standarized.
+
+----------------------------------------------------------------
+
+- r46.s0    [May 31st, 2018][Stable]
+    + Motion search improvement for search more blocks.
+    + Increase coarse frame size value -> 5812.
+    + Decrease maximum coarse frame value -> 2^14 [16384]. 
+    + Change Interpolation mode -> 21 for improve masks,
+      cover/uncover frames and cutscenes.
+    + Decrease mask area value -> 60 for better cover/uncovering
+      result.
+    + Enable blend frame by default.
+    + Using Max() instead of Logic to qualified maximum values.
+    + Change vector grip block size to 8x8 by default.
+      note: It decreases Processing time.
+    + Add config for mask cover/uncover and mask area value.
+    + Add warner for mask_area and mask_cover.
+    + Change plevel value by logic.
+        if coarse_max's calcs > 512, change to 1
+        if coarse_max's calcs > 1024, change to 2
+        if coarse_max's calcs > 2048, change to 4
+        if coarse_max's calcs empty, change to 4 [default]
+    + Increase lambda n Value -> 13.
+    + Add warner for search_range.
+    + Replace some "bad word function" into NO().
+    # Fix typos in some script.
+
+----------------------------------------------------------------
+
+- r31.s0    [May 27th, 2018][Stable]
+    + Decrease motion search distance value to 32 by default.
+    + Increase coarse frame size value to 3200 by default.
+    + Increase maximum memory usage value to 512 MB.
+    + Shorten variables name.
+    + Add config to enable/disable SATD algorithm.
+    + Add Warner for user if value isn't correct.
+    + Move MTDefault thread mode 3 and SVPFlow functions
+      thread mode to 2.
+    + Increase interpolation framerate to 49.940fps.
+    + Move input variable from _init to
+      FunctionInterpolateParam class.
+    + Change vector grip block size to 32x32.
+    + Add config for motion coherences value.
+    + Change frame masking value to 80.67 for better result.
+    - Remove some unused and old variables.
+    # Fix SetMemoryMax not applies value from configuration.
+    # Fix performance will leaked if runs in AMD based
+      CPU/GPU. It caused by SATD algorithm if it turns on.
+    # Disable trymany and frame sorting algorithm. It also
+      decreases processing performance at some case.
+    # Fix some DS based player stuck by increases interpolation
+      framerate to drop-frame [e.g. 49.940fps/59.940fps] by
+      default.
+
+----------------------------------------------------------------
+
+- r14.b2    [May 23rd, 2018][Beta]
+    + Motion search improvement for search more blocks.
+    + Change pixel_precision to 1 by default.
+    + Make demo mode text scalable by following video
+      resolution.
+    + Add p or i indicator text in demo mode header.
+    + Move ConvertToYV12() from Thread class to _init class.
+    + Replace [n]fps text in demo mode to [n]fps/[mode].
+    + Divide framerate value by 2 in demo mode if interlace mode
+      was enabled.
+    + Increase maximum memory usage value to 384 MB.
+    + Change title text in ConfigurationHandler.
+    + Change blend_frame to false by default.
+    + Add some formulas to calculate motion search range.
+    + Enable SATD in motion search, coarse frame and refine
+      search to improve masking some covered/uncovered vectors.
+    + Implement block size configuration for block matching
+      algorithm.
+    + Implement motion search range configuration.
+    + Implement motion search method configuration.
+    + Implement maximum coarse frame size configuration.
+    - Remove unused MTMode in interlace and demo mode.
+    # Fix plain and smoothed video frame aren't syncronized
+      by each other in demo mode [maybe affects
+      to processing performance].
+
+----------------------------------------------------------------
+
+- r2.b5     [May 22nd, 2018][Beta]
+    + Initial release.
+
+----------------------------------------------------------------
+Written by: neon-nyan | dev.kemalsetyaa@gmail.com

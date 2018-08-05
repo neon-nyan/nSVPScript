@@ -1,0 +1,55 @@
+# nSVPInterpolate Script v2.0
+# by: neon-nyan
+# ----------------------------------------------------------
+# 
+
+global defDir_src           ="src\"
+global defDir_bin           ="bin\"
+global defDir_bin64         ="bin64\"
+global defDir_Settings      ="Settings\"
+global defDir__preset       ="_preset\"
+
+global dir                  =ScriptDir()
+global dirWord              =dir.StrLen() - defDir_src.StrLen()
+
+global dir                  =String(MidStr(String(dir), 1, dirWord))
+global dirSrc               =dir + defDir_src
+global dirBin               =dirSrc + defDir_bin
+global dirBin64             =dirSrc + defDir_bin64
+global dirSet               =dir + defDir_Settings
+global dirPreset            =dirSet + defDir__preset
+
+global dConf                =dirSet + "UserSettings.ini"
+
+global input                =last
+global s_ver                ="v2.0"
+global sW                   =input.width()
+global sH                   =input.height()
+global sR                   =input.FrameRate()
+global threads              =5
+global gpu_accel            =true
+global gpu_id               =1
+global framerate_num        =60
+global framerate_den        =1
+global interpolate_mode     =21
+global memory_max           =1024
+global pixel_precision      =1
+global blend_frame          =true
+global interlace            =false
+global demo                 =false
+global demo_type            =1
+global block_w              =32
+global block_h              =16
+global block_overlap        =0
+global search_method        =2
+global search_range         =5
+global coarse_max           =1500
+global satd                 =false
+global satd_inCoarse        =false
+global lambda               =10
+global mask_cover           =100
+global mask_area            =32
+global preset               =6
+global scale                =false
+global scale_x              =0
+global scale_y              =0

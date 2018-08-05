@@ -1,0 +1,59 @@
+# nSVPInterpolate Script v2.0
+# by: neon-nyan
+# ----------------------------------------------------------
+# 
+
+global analyse_params   = """
+{
+    gpu:""" + String(gpu_accel) + """,
+    vectors:3,
+    block:{
+        w:""" + String(block_w) + """,
+        h:""" + String(block_h) + """,
+        overlap:""" + String(block_overlap) + """
+    },
+    main:{
+        search:{
+            type:""" + String(search_method) + """,
+            distance:""" + "-" + String(Round(max(4, search_range) * 2.2)) + """,
+            type:""" + String(search_method) + """,
+            satd:""" + String(satd_inCoarse) + """,
+            sort:true,
+            coarse:{
+                width:""" + String(coarse_max) + """,
+                type:""" + String(search_method) + """,
+                distance:""" + "-" + String(max(4, search_range) * 2) + """,
+                satd:""" + String(satd) + """,
+                trymany:true,
+                bad:{
+                    sad:""" + String(coarse_max - Round((coarse_max * 8.67) / 100)) + """,
+                    range:""" + "-" + String(Round(max(4, search_range) * 6.667)) + """
+                }
+            }
+        }
+    },
+    penalty:{
+        lambda:""" + String(lambda) + """,
+        plevel:4,
+        lsad:""" + String(Round(coarse_max * 5.8)) + """,
+        pnew:""" + String(Round(lambda * 5.75)) + """,
+        pglobal:""" + String(Round(lambda * 5.75)) + """,
+        pzero:""" + String(Round(lambda * 10.28)) + """,
+        pnbour:""" + String(Round(lambda * 5.75)) + """,
+        prev:""" + String(Round((framerate_num / framerate_den) + (lambda * 5 / 100))) + """
+        
+    },
+    refine:[{
+        thsad:""" + String(Round((coarse_max * 75) / 100)) + """,
+        search:{
+            type:""" + String(search_method) + """,
+            distance:""" + String((search_method < 4) ? "" : "-") + String(max(8, search_range) + 12) + """,
+            satd:""" + String(satd) + """
+        },
+        penalty:{
+            pnew:""" + String(lambda * 5) + """
+        }
+    }],
+    special:{delta:1}
+}
+"""

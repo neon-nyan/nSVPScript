@@ -1,0 +1,147 @@
+# nSVPInterpolate Script v2.0
+# by: neon-nyan
+# ----------------------------------------------------------
+# 
+
+function NO()
+    {return NOP}
+
+/*
+* nSVPInterpolate Preset Configuration handler
+*/
+p = preset
+ (p == 1) ? Eval("""
+    global dConf = dirPreset + String(p) + "_VeryLow"
+    global presetName = "Very Low"
+ """)\
+:(p == 2) ? Eval("""
+    global dConf = dirPreset + String(p) + "_Low"
+    global presetName = "Low"
+ """)\
+:(p == 3) ? Eval("""
+    global dConf = dirPreset + String(p) + "_Medium"
+    global presetName = "Medium"
+ """)\
+:(p == 4) ? Eval("""
+    global dConf = dirPreset + String(p) + "_High"
+    global presetName = "High"
+ """)\
+:(p == 5) ? Eval("""
+    global dConf = dirPreset + String(p) + "_VeryHigh"
+    global presetName = "Very High"
+ """)\
+:(p == 6) ? Eval("""
+    global dConf = dirPreset + String(p) + "_nyan"
+    global presetName = "neon-nyan's Preset [Default]"
+ """)\
+:(p == 7) ? Eval("""
+    global dConf = dirPreset + String(p) + "_Render"
+    global presetName = "Placebo - Render Preset"
+""")\
+:NO
+
+/*
+* neon-nyan's absolute scaling calculator
+* ------------------------------------------------
+* Handler for defining absolute clip width and
+* height value for scaling.
+*/
+    # Return width and height value if one of them is 0 and -1 or vice versa
+    scale && (scale_x == -1 && scale_y == 0 \
+           || scale_x == 0 && scale_y == -1 \
+           || scale_x == -1 && scale_y == -1) ? Eval("""
+        global scale_x = sW
+        global scale_y = SH
+    """) : NO
+
+    # Get an absolute scaling value for width referenced to its height.
+        # Scale down if scale_x less than / same as sW
+        scale && scale_x == -1 ? Eval("""
+            global scale_x = Round((float(scale_y) / float(sH)) * float(100))
+            global scale_x = Floor((float(scale_x) * float(sW)) / float(100))
+        """) : scale && scale_x == 0 ? Eval("""
+            global scale_x = sW
+        """) : NO
+
+    # Get an absolute scaling value for height referenced to its width.
+        # Scale down if scale_y less than / same as sH
+        scale && scale_y == -1 ? Eval("""
+            global scale_y = Round((float(scale_x) / float(sW)) * float(100))
+            global scale_y = Floor((float(scale_y) * float(sH)) / float(100))
+        """) : scale && scale_y == 0 ? Eval("""
+            global scale_y = sH
+        """) : NO
+
+    # Convert width and height value into even numbers if the result that
+    # caused from absolute scaling calculation are odd numbers by adding
+    # 1 into a or both of numbers.
+        Round(scale_x / 2) * 2 != scale_x ? Eval("""
+            global scale_x = scale_x + 1
+        """) : NO
+
+        Round(scale_y / 2) * 2 != scale_y ? Eval("""
+            global scale_y = scale_y + 1
+        """) : NO
+    
+    # Override _init's input into scaled input if scale == true
+    scale ? Eval("""
+        global input = Spline64Resize(input, scale_x, scale_y)
+        global sW = input.width
+        global sH = input.height
+    """) : NOP
+
+/*
+* neon-nyan's number separator function
+* ------------------------------------------------
+* It splits number in float by adding a or more
+* 1/10's
+* 
+* in     = input data in float.
+* start  = start position of number separator [.]
+* length = length of number that will be merged
+           on.
+* divide = divide input by number before
+           splitting.
+* 
+* note: if fraction is 0, the fraction will not
+        merged.
+* 
+* this function will return the output as string.
+*/
+function nNumSeparate(float "in", int "start", int "length", float "divide")
+{
+    Assert(Defined(in), "error nNumSeparate(): Input must be exist!")
+    start   = Default(start, 1)
+    length  = Default(length, 3)
+    divide  = Default(divide, 1)
+    
+    in      = in / divide
+    
+    i_Int   = Int(in)
+    i_Frac  = MidStr(String(Frac(in)), start, length)
+    i_FracI = Int(Eval(i_Frac))
+    n       = String(String(i_Int) + String(i_FracI > 0 ? "." + String(i_FracI) : ""))
+    
+    return n
+}
+    
+# Import the User settings after import the default one.
+Import(dConf)
+
+function nSVPInterpolate()
+{
+    Assert(Exist(dirBin + "svpflow1.dll") && Exist(dirBin + "svpflow2.dll") ? true : false,\
+        "Plugin doesn't exist! | Download at: https://www.svp-team.com/wiki/Manual:SVPflow")
+    LoadPlugin(dirBin + "svpflow1.dll")
+    LoadPlugin(dirBin + "svpflow2.dll")
+    Interpolate(input)
+}
+
+function nSVPInterpolate64()
+{
+    Assert(Exist(dirBin64 + "svpflow1.dll") && Exist(dirBin64 + "svpflow2.dll") ? true : false,\
+        "Plugin doesn't exist! | Download at: https://www.svp-team.com/wiki/Manual:SVPflow")
+    LoadPlugin(dirBin64 + "svpflow1.dll")
+    LoadPlugin(dirBin64 + "svpflow2.dll")
+    Interpolate(input)
+}
