@@ -6,7 +6,7 @@
 global smoothfps_params = """
 {
     gpuid:""" + String(gpu_id) + """,
-    cubic:""" + String(gpu_accel) + """,
+    cubic:""" + String(gpu_accel?false:false) + """,
     rate:{
         num:""" + String(framerate_num) + """,
         den:""" + String(framerate_den) + """,
@@ -17,19 +17,19 @@ global smoothfps_params = """
     mask:{
         cover:""" + String(mask_cover) + """,
         area:""" + String(mask_area) + """,
-        area_sharp:1.0
+        area_sharp:2.0
     },
     scene:{
         mode:3,
         blend:""" + String(blend_frame) + """,
         limits:{
-            m1:1800,
-            m2:3150,
+            m1:1500,
+            m2:2870,
             scene:4500,
             zero:""" + String(Round((coarse_max * 16) / 100)) + """,
-            blocks:""" + String(Round(((coarse_max * 2.4) / 100) + lambda)) + """
+            blocks:""" + String(Round(((coarse_max * 4.2) / 100) + lambda)) + """
         },
-        luma:1.75
+        luma:3.0
     }
 }
 """

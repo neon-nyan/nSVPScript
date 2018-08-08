@@ -53,3 +53,5 @@ global preset               =6
 global scale                =false
 global scale_x              =0
 global scale_y              =0
+global sort                 =false
+global trymany              =false

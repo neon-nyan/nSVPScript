@@ -10,7 +10,7 @@ global framerate_den=1
 global framerate_mul=true
 
 global interpolate_mode=21
-global pixel_precision=1
+global pixel_precision=4
 global blend_frame=false
 
 global block_w=16
@@ -27,4 +27,4 @@ global satd_inCoarse=false
 global lambda=5
 
 global mask_cover=100
-global mask_area=32
+global mask_area=60
