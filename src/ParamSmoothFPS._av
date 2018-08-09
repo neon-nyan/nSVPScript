@@ -6,7 +6,7 @@
 global smoothfps_params = """
 {
     gpuid:""" + String(gpu_id) + """,
-    cubic:""" + String(gpu_accel?false:false) + """,
+    cubic:""" + String(gpu_accel) + """,
     rate:{
         num:""" + String(framerate_num) + """,
         den:""" + String(framerate_den) + """,
@@ -14,22 +14,27 @@ global smoothfps_params = """
     },
     algo:""" + String(interpolate_mode) + """,
     block:false,
+    linear:""" + String(gpu_accel) + """,
     mask:{
         cover:""" + String(mask_cover) + """,
         area:""" + String(mask_area) + """,
-        area_sharp:2.0
+        area_sharp:1.0
     },
     scene:{
         mode:3,
         blend:""" + String(blend_frame) + """,
         limits:{
-            m1:1500,
-            m2:2870,
-            scene:4500,
-            zero:""" + String(Round((coarse_max * 16) / 100)) + """,
-            blocks:""" + String(Round(((coarse_max * 4.2) / 100) + lambda)) + """
+            m1:2400,
+            m2:4800,    """ /* m1 * 1.5 */ + """
+            scene:7200, """ /* m2 * 1.5 */ + """
+            zero:2400,  """ /* same as analyse_params >  main > refine > thsad */ + """
+            blocks:60   """ /* How much block threshold in percent have to change */ + """
         },
         luma:3.0
+    },
+    light:{
+        light:20,
+        border:16
     }
 }
 """
