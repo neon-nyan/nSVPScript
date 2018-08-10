@@ -57,7 +57,7 @@ p = preset
     # Get an absolute scaling value for width referenced to its height.
         # Scale down if scale_x less than / same as sW
         scale && scale_x == -1 ? Eval("""
-            global scale_x = Round((float(scale_y) / float(sH)) * float(100))
+            global scale_x = (float(scale_y) / float(sH)) * float(100)
             global scale_x = Floor((float(scale_x) * float(sW)) / float(100))
         """) : scale && scale_x == 0 ? Eval("""
             global scale_x = sW
@@ -66,7 +66,7 @@ p = preset
     # Get an absolute scaling value for height referenced to its width.
         # Scale down if scale_y less than / same as sH
         scale && scale_y == -1 ? Eval("""
-            global scale_y = Round((float(scale_x) / float(sW)) * float(100))
+            global scale_y = (float(scale_x) / float(sW)) * float(100)
             global scale_y = Floor((float(scale_y) * float(sH)) / float(100))
         """) : scale && scale_y == 0 ? Eval("""
             global scale_y = sH
