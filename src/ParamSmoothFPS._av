@@ -14,7 +14,6 @@ global smoothfps_params = """
     },
     algo:""" + String(interpolate_mode) + """,
     block:false,
-    linear:""" + String(gpu_accel) + """,
     mask:{
         cover:""" + String(mask_cover) + """,
         area:""" + String(mask_area) + """,
@@ -31,10 +30,6 @@ global smoothfps_params = """
             blocks:60   """ /* How much block threshold in percent have to change */ + """
         },
         luma:3.0
-    },
-    light:{
-        light:20,
-        border:16
     }
 }
 """
