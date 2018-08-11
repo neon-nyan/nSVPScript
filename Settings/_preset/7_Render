@@ -13,18 +13,18 @@ global interpolate_mode=21
 global pixel_precision=1
 global blend_frame=false
 
-global block_w=16
+global block_w=8
 global block_h=8
 global block_overlap=3
 
 global search_method=4
-global search_range=48
+global search_range=24
 
-global coarse_max=512
+global coarse_max=694
 global satd=true
 global satd_inCoarse=true
 
-global lambda=3
+global lambda=5
 
 global mask_cover=100
-global mask_area=70
+global mask_area=10

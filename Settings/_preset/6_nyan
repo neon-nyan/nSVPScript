@@ -17,14 +17,14 @@ global block_w=16
 global block_h=16
 global block_overlap=2
 
-global search_method=3
-global search_range=10
+global search_method=4
+global search_range=16
 
 global coarse_max=694
 global satd=false
-global satd_inCoarse=false
+global satd_inCoarse=true
 
 global lambda=5
 
 global mask_cover=100
-global mask_area=32
+global mask_area=10

@@ -15,43 +15,42 @@ global analyse_params   = """
     main:{
         search:{
             type:""" + String(search_method) + """,
-            distance:""" + "-" + String(Round(max(4, search_range) * 2.2)) + """,
-            type:""" + String(search_method) + """,
-            satd:""" + String(satd_inCoarse) + """,
-            sort:true,
+            distance:""" + String(search_method == 3 ? "" : "-") + String(search_range) + """,
+            satd:""" + String(satd) + """,
+            sort:""" + String(sort) + """,
             coarse:{
-                width:""" + String(coarse_max) + """,
+                width:1280,
                 type:""" + String(search_method) + """,
-                distance:""" + "-" + String(max(4, search_range) * 2) + """,
-                satd:""" + String(satd) + """,
-                trymany:true,
+                distance:""" + String(search_method == 3 ? "" : "-") + String(search_range * 2) + """,
+                satd:""" + String(satd_inCoarse) + """,
+                trymany:""" + String(trymany) + """,
                 bad:{
-                    sad:""" + String(coarse_max - Round((coarse_max * 8.67) / 100)) + """,
-                    range:""" + "-" + String(Round(max(4, search_range) * 6.667)) + """
+                    sad:2176,   """ /* thsad + ((thsad * 36) / 100) */ + """
+                    range:""" + String(search_method == 3 ? "" : "-") + String(search_range * 3) + """
                 }
             }
         }
     },
     penalty:{
-        lambda:""" + String(lambda) + """,
+        lambda:15,
         plevel:4,
-        lsad:""" + String(Round(coarse_max * 5.8)) + """,
-        pnew:""" + String(Round(lambda * 5.75)) + """,
-        pglobal:""" + String(Round(lambda * 5.75)) + """,
-        pzero:""" + String(Round(lambda * 10.28)) + """,
-        pnbour:""" + String(Round(lambda * 5.75)) + """,
-        prev:""" + String(Round((framerate_num / framerate_den) + (lambda * 5 / 100))) + """
+        lsad:11500,
+        pnew:80,
+        pglobal:80,     """ /* same as pnew */ + """
+        pzero:160,      """ /* pnew * 2 */ + """
+        pnbour:80,      """ /* same as pnew */ + """
+        prev:""" + String(Round((framerate_num / framerate_den) / 2)) + """
         
     },
     refine:[{
-        thsad:""" + String(Round((coarse_max * 75) / 100)) + """,
+        thsad:2400,
         search:{
             type:""" + String(search_method) + """,
-            distance:""" + String((search_method < 4) ? "" : "-") + String(max(8, search_range) + 12) + """,
+            distance:""" + String(search_method == 3 ? "" : "-") + String(search_range / 2) + """, """ /* same as pel */ + """
             satd:""" + String(satd) + """
         },
         penalty:{
-            pnew:""" + String(lambda * 5) + """
+            pnew:80
         }
     }],
     special:{delta:1}
