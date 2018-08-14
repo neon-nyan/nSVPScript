@@ -32,25 +32,24 @@ global analyse_params   = """
         }
     },
     penalty:{
-        lambda:15,
-        plevel:4,
-        lsad:11500,
-        pnew:80,
-        pglobal:80,     """ /* same as pnew */ + """
-        pzero:160,      """ /* pnew * 2 */ + """
-        pnbour:80,      """ /* same as pnew */ + """
-        prev:""" + String(Round((framerate_num / framerate_den) / 2)) + """
-        
+        lambda:""" + String(penalty_lambda) + """,
+        plevel:""" + String(penalty_plevel) + """,
+        lsad:""" + String(penalty_lsad) + """,
+        pnew:""" + String(penalty_pnew) + """,
+        pglobal:""" + String(penalty_pglobal) + """,    """ /* same as pnew */ + """
+        pzero:""" + String(penalty_pzero) + """,        """ /* pnew * 2 */ + """
+        pnbour:""" + String(penalty_pnbour) + """,      """ /* same as pnew */ + """
+        prev:""" + String(penalty_prev) + """
     },
     refine:[{
-        thsad:2400,
+        thsad:""" + String(refine_thsad) + """,
         search:{
-            type:""" + String(search_method) + """,
-            distance:""" + String(search_method == 3 ? "" : "-") + String(search_range / 2) + """, """ /* same as pel */ + """
-            satd:""" + String(satd) + """
+            type:""" + String(refine_search_method) + """,
+            distance:""" + String(refine_search_range == 3 ? "" : "-") + String(search_range / 2) + """, """ /* same as pel */ + """
+            satd:""" + String(refine_search_satd) + """
         },
         penalty:{
-            pnew:80
+            pnew:""" + String(refine_penalty) + """
         }
     }],
     special:{delta:1}
