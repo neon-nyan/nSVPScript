@@ -21,8 +21,8 @@ global lWarning = NO
     )
 
 # Warn if lambda is out of range
-    Assert((lambda>24)||(lambda<1) ? false : true,\
-        "Error: lambda value is out of range!"\
+    Assert((penalty_lambda>24)||(penalty_lambda<1) ? false : true,\
+        "Error: penalty_lambda value is out of range!"\
     )
 
 # Warn if interpolate_mode isn't in list

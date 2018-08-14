@@ -19,7 +19,7 @@ global analyse_params   = """
             satd:""" + String(satd) + """,
             sort:""" + String(sort) + """,
             coarse:{
-                width:1280,
+                width:""" + String(coarse_max) + """,
                 type:""" + String(search_method) + """,
                 distance:""" + String(search_method == 3 ? "" : "-") + String(search_range * 2) + """,
                 satd:""" + String(satd_inCoarse) + """,

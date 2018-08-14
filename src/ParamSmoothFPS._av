@@ -17,19 +17,19 @@ global smoothfps_params = """
     mask:{
         cover:""" + String(mask_cover) + """,
         area:""" + String(mask_area) + """,
-        area_sharp:1.0
+        area_sharp:""" + String(mask_sharp) + """
     },
     scene:{
-        mode:3,
+        mode:""" + String(scene_mode) + """,
         blend:""" + String(blend_frame) + """,
         limits:{
-            m1:2400,
-            m2:4800,    """ /* m1 * 1.5 */ + """
-            scene:7200, """ /* m2 * 1.5 */ + """
-            zero:2400,  """ /* same as analyse_params > main > refine > thsad */ + """
-            blocks:60   """ /* How much block threshold in percent have to change */ + """
+            m1:""" + String(scene_m1) + """,
+            m2:""" + String(scene_m2) + """,        """ /* m1 * 1.5 */ + """
+            scene:""" + String(scene_limit) + """,  """ /* m2 * 1.5 */ + """
+            zero:""" + String(scene_zero) + """,    """ /* same as analyse_params > main > refine > thsad */ + """
+            blocks:""" + String(scene_thres) + """  """ /* How much block threshold in percent have to change */ + """
         },
-        luma:3.0
+        luma:""" + String(scene_luma) + """
     }
 }
 """
