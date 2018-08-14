@@ -85,7 +85,7 @@ function Interpolate(clip input)
         /*
         * Frame difference demo mode variables section
         */
-        diff = mt_makeDiff(sinput, pinput, chroma="process")
+        diff = mt_makeDiff(sinput, pinput, chroma="process", y=3, u=2, v=2)
         demoType_3 = diff
         
         /* Confirm demo type. */
