@@ -5,31 +5,31 @@
 
 global smoothfps_params = """
 {
-    gpuid:""" + String(gpu_id) + """,
-    cubic:""" + String(gpu_accel) + """,
-    rate:{
-        num:""" + String(framerate_num) + """,
-        den:""" + String(framerate_den) + """,
-        abs:""" + String(framerate_mul) + """
+    gpuid: """ + String(gpu_id) + """,
+    cubic: """ + String(gpu_accel) + """,
+    rate: {
+        num: """ + String(framerate_num) + """,
+        den: """ + String(framerate_den) + """,
+        abs: """ + String(framerate_mul) + """
     },
-    algo:""" + String(interpolate_mode) + """,
-    block:false,
-    mask:{
-        cover:""" + String(mask_cover) + """,
-        area:""" + String(mask_area) + """,
-        area_sharp:""" + String(mask_sharp) + """
+    algo: """ + String(interpolate_mode) + """,
+    block: false,
+    mask: {
+        cover: """ + String(mask_cover) + """,
+        area: """ + String(mask_area) + """,
+        area_sharp: """ + String(mask_sharp) + """
     },
-    scene:{
-        mode:""" + String(scene_mode) + """,
-        blend:""" + String(blend_frame) + """,
-        limits:{
-            m1:""" + String(scene_m1) + """,
-            m2:""" + String(scene_m2) + """,        """ /* m1 * 1.5 */ + """
-            scene:""" + String(scene_limit) + """,  """ /* m2 * 1.5 */ + """
-            zero:""" + String(scene_zero) + """,    """ /* same as analyse_params > main > refine > thsad */ + """
-            blocks:""" + String(scene_thres) + """  """ /* How much block threshold in percent have to change */ + """
+    scene: {
+        mode: """ + String(scene_mode) + """,
+        blend: """ + String(blend_frame) + """,
+        limits: {
+            m1: """ + String(scene_m1) + """,
+            m2: """ + String(scene_m2) + """,        """ /* m1 * 1.5 */ + """
+            scene: """ + String(scene_limit) + """,  """ /* m2 * 1.5 */ + """
+            zero: """ + String(scene_zero) + """,    """ /* same as analyse_params > main > refine > thsad */ + """
+            blocks: """ + String(scene_thres) + """  """ /* How much block threshold in percent have to change */ + """
         },
-        luma:""" + String(scene_luma) + """
+        luma: """ + String(scene_luma) + """
     }
 }
 """

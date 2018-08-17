@@ -4,6 +4,6 @@
 #
 
 SetMemoryMax(memory_max)
-global threads=threads + 1
+global threads = threads + 1
 
-SetFilterMTMode("DEFAULT_MT_MODE",2)
+SetFilterMTMode("DEFAULT_MT_MODE", 2)

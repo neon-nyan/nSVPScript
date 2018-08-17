@@ -5,91 +5,91 @@
 
 function Interpolate(clip input)
 {
-	super=SVSuper(input, super_params)
-	vectors=SVAnalyse(super, analyse_params,\
-                      src=input)
+	super   = SVSuper(input, super_params)
+	vectors = SVAnalyse(super, analyse_params, \
+                      src = input)
 
-	SVSmoothFps(input, super, vectors,\
-                smoothfps_params, mt=threads,\
-                src=input)
+	SVSmoothFps(input, super, vectors, \
+                smoothfps_params, mt = threads, \
+                src = input)
     interlace ? Eval("""
-        AssumeFrameBased\
-        .DoubleWeave\
-        .SelectOdd\
-        .SelectEvery(2,1)\
+        AssumeFrameBased \
+        .DoubleWeave \
+        .SelectOdd \
+        .SelectEvery(2, 1) \
         .AssumeTFF()
     """) : NO
 
     demo ? Eval("""
     
-        sinput = input.ChangeFPS(framerate_num, framerate_den, linear = false)
-        pinput = last.ChangeFPS(framerate_num, framerate_den, linear = false)
-        sinputR = nNumSeparate(sR, start=StrLen(String(sR))-6, length=3)
-        pinputR = nNumSeparate(pinput.FrameRate(), start=StrLen(String(pinput.FrameRate()))-6, length=3)
-        pinputR_i = nNumSeparate(pinput.FrameRate(), start=StrLen(String(pinput.FrameRate()))-6, length=3, divide=2)
+        sinput      = input.ChangeFPS(framerate_num, framerate_den, linear = false)
+        pinput      = last.ChangeFPS(framerate_num, framerate_den, linear = false)
+        sinputR     = nNumSeparate(sR, start = StrLen(String(sR)) - 6, length = 3)
+        pinputR     = nNumSeparate(pinput.FrameRate(), start = StrLen(String(pinput.FrameRate())) - 6, length = 3)
+        pinputR_i   = nNumSeparate(pinput.FrameRate(), start = StrLen(String(pinput.FrameRate())) - 6, length = 3, divide = 2)
         
         /*
         * Horizontal demo mode variables section
         */
-        dHoriz_nF1 = sinput.crop(0,0,-(sW/2)-2,0)
-        dHoriz_sF1 = pinput.crop((sW/2)+2,0,0,0)
-        dHoriz = StackHorizontal(dHoriz_nF1.Subtitle("Plain @"\
-            + String(sinputR) + "fps",\
-            align = 2,\
-            size = Round(sW - (sW * 97.8) / 100)\
-        ),\
-        dHoriz_nF1.BlankClip(width=4).ConvertToYV12(),\
-        dHoriz_sF1.Subtitle("Smoothed @"\
-            + (interlace ? pinputR_i : pinputR)\
-            + (interlace ? "fps/i" : "fps/p"),\
-            align = 2,\
-            size = Round(sW - (sW * 97.8) / 100)\
-        )).Subtitle(\
-            "Video size:"\
-            + String(width) + "x"\
-            + String(height)\
-            + String(interlace ? "i TFF" : "p")\
-            + " | Preset: " + presetName,\
-            align = 8,\
-            size = Round(sW - (sW * 97.8) / 100)\
-        )\
-        demoType_1 = dHoriz
+        dHoriz_nF1  = sinput.crop(0, 0, -(sW / 2) - 2, 0)
+        dHoriz_sF1  = pinput.crop((sW / 2) + 2, 0, 0, 0)
+        dHoriz = StackHorizontal(dHoriz_nF1.Subtitle("Plain @" \
+            + String(sinputR) + "fps", \
+            align = 2, \
+            size = Round(sW - (sW * 97.8) / 100) \
+        ), \
+        dHoriz_nF1.BlankClip(width = 4).ConvertToYV12(), \
+        dHoriz_sF1.Subtitle("Smoothed @" \
+            + (interlace ? pinputR_i : pinputR) \
+            + (interlace ? "fps/i" : "fps/p"), \
+            align = 2, \
+            size = Round(sW - (sW * 97.8) / 100) \
+        )).Subtitle( \
+            "Video size:" \
+            + String(width) + "x" \
+            + String(height) \
+            + String(interlace ? "i TFF" : "p") \
+            + " | Preset: " + presetName, \
+            align = 8, \
+            size = Round(sW - (sW * 97.8) / 100) \
+        )
+        demoType_1  = dHoriz
         
         /*
         * Vertical demo mode variables section
         */
-        dVerti_sF1 = pinput.crop(0,0,0,-(sH/2)-4)
-        dVerti_nF1 = sinput.crop(0,(sH/2)+2,0,0)
-        dVerti = StackVertical(dVerti_sF1.Subtitle("Smoothed @"\
-            + (interlace ? pinputR_i : pinputR)\
-            + (interlace ? "fps/i" : "fps/p"),\
-            align = 8,\
-            size = Round(sW - (sW * 97.8) / 100)\
-        ),\
-        BlankClip(width=dVerti_nF1.width(), height=6).ConvertToYV12(),\
-        dVerti_nF1.Subtitle("Plain @"\
-            + String(sinputR) + "fps",\
-            align = 2,\
-            size = Round(sW - (sW * 97.8) / 100)\
-        )).Subtitle(\
-            "Video size:"\
-            + String(width) + "x"\
-            + String(height)\
-            + String(interlace ? "i TFF" : "p")\
-            + " | Preset: " + presetName,\
-            align = 5,\
-            size = Round(sW - (sW * 97.8) / 100)\
-        )\
-        demoType_2 = dVerti
+        dVerti_sF1  = pinput.crop(0, 0, 0, -(sH / 2) - 4)
+        dVerti_nF1  = sinput.crop(0, (sH / 2) + 2, 0, 0)
+        dVerti = StackVertical(dVerti_sF1.Subtitle("Smoothed @" \
+            + (interlace ? pinputR_i : pinputR) \
+            + (interlace ? "fps/i" : "fps/p"), \
+            align = 8, \
+            size = Round(sW - (sW * 97.8) / 100) \
+        ), \
+        BlankClip(width = dVerti_nF1.width(), height = 6).ConvertToYV12(), \
+        dVerti_nF1.Subtitle("Plain @" \
+            + String(sinputR) + "fps", \
+            align = 2, \
+            size = Round(sW - (sW * 97.8) / 100) \
+        )).Subtitle( \
+            "Video size:" \
+            + String(width) + "x" \
+            + String(height) \
+            + String(interlace ? "i TFF" : "p") \
+            + " | Preset: " + presetName, \
+            align = 5, \
+            size = Round(sW - (sW * 97.8) / 100) \
+        )
+        demoType_2  = dVerti
         
         /*
         * Frame difference demo mode variables section
         */
-        diff = mt_makeDiff(sinput, pinput, chroma="process", y=3, u=2, v=2)
-        demoType_3 = diff
+        diff        = mt_makeDiff(sinput, pinput, chroma = "process", y = 3, u = 2, v = 2)
+        demoType_3  = diff
         
         /* Confirm demo type. */
-        demo_fr = Eval("demoType_" + String(demo_type))
+        demo_fr     = Eval("demoType_" + String(demo_type))
         
         demo_fr
     """) : NO
