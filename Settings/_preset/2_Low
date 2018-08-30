@@ -5,26 +5,55 @@
 
 global max_memory=512
 
-global framerate_num=50
-global framerate_den=1
-global framerate_mul=true
+    global framerate_num=50
+    global framerate_den=1
+    global framerate_mul=true
 
-global interpolate_mode=2
-global pixel_precision=2
-global blend_frame=true
+global interpolate_mode=21
+global pixel_precision=1
 
-global block_w=32
-global block_h=32
-global block_overlap=1
+global blend_frame=false
+    global block_w=32
+    global block_h=16
+    global block_overlap=0
 
 global search_method=2
-global search_range=4
+global search_range=8
 
-global coarse_max=1387
+global coarse_max=768
+    global coarse_method=search_method
+    global coarse_range=search_range
+
 global satd=false
-global satd_inCoarse=false
+    /* UNSAFE!!! DON'T ENABLE satd_inCoarse. IT GONNA DESTROY SOME VECTOR BLOCKS! */
+    global satd_inCoarse=false
 
-global lambda=7
+global penalty_lambda=8
+    global penalty_plevel=1
+    global penalty_lsad=11500
+    global penalty_pnew=50
+    global penalty_pglobal=penalty_pnew
+    global penalty_pzero=penalty_pnew * 2
+    global penalty_pnbour=penalty_pnew
+    global penalty_prev=Round((framerate_num / framerate_den) / 2)
 
-global mask_cover=100
-global mask_area=10
+global refine_thsad=2700
+    global refine_search_method=search_method
+    global refine_search_range=search_range
+    global refine_search_satd=satd
+    global refine_penalty=penalty_pnew
+
+    global mask_cover=100
+    global mask_area=0
+    global mask_sharp=1.0
+
+global scene_mode=1
+    global scene_m1=3000
+    global scene_m2=scene_m1 * 1.5
+    global scene_limit=scene_m2 * 1.5
+    global scene_zero=refine_thsad
+    global scene_thres=100
+    global scene_luma=3.0
+
+global trymany=false
+global sort=true

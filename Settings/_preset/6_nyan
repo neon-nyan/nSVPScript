@@ -3,28 +3,57 @@
 # ----------------------------------------------------------
 # 
 
-global max_memory=1024
-
 global framerate_num=60
-global framerate_den=1
-global framerate_mul=true
+    global framerate_den=1
+    global framerate_mul=true
 
-global interpolate_mode=21
+global interpolate_mode=23
 global pixel_precision=1
-global blend_frame=false
 
-global block_w=16
-global block_h=16
-global block_overlap=2
+global blend_frame=false
+    global block_w=8
+    global block_h=8
+    global block_overlap=0
 
 global search_method=4
-global search_range=16
+global search_range=8
 
-global coarse_max=694
+global coarse_max=1050
+    global coarse_method=4
+    global coarse_range=10
+
 global satd=false
-global satd_inCoarse=true
+    /* UNSAFE!!! DON'T ENABLE satd_inCoarse. IT GONNA DESTROY SOME VECTOR BLOCKS! */
+    global satd_inCoarse=false
 
-global lambda=5
+global bad_sad=1000
+    global bad_range=16
 
-global mask_cover=100
-global mask_area=10
+global penalty_lambda=10.0
+    global penalty_plevel=4
+    global penalty_lsad=8000
+    global penalty_pnew=50
+    global penalty_pglobal=50
+    global penalty_pzero=100
+    global penalty_pnbour=50
+    global penalty_prev=Round((framerate_num / framerate_den))
+
+global refine_thsad=200
+    global refine_search_method=4
+    global refine_search_range=4
+    global refine_search_satd=false
+
+    global mask_cover=100
+    global mask_area=10
+    global mask_sharp=1.0
+
+global scene_mode=3
+    global scene_m1=1600
+    global scene_m2=2800
+    global scene_limit=4000
+    global scene_zero=200
+    global scene_thres=40
+    global scene_luma=3.0
+
+global trymany=false
+global sort=true
