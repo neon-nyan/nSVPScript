@@ -13,7 +13,7 @@ global smoothfps_params = """
         abs: """ + String(framerate_mul) + """
     },
     algo: """ + String(interpolate_mode) + """,
-    block: false,
+    block: """ + String(!gpu_accel) + """,
     mask: {
         cover: """ + String(mask_cover) + """,
         area: """ + String(mask_area) + """,

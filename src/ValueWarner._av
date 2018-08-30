@@ -5,119 +5,152 @@
 
 global lWarning = NO
 
-# Warn if Clip isn't an YV12 input.
-    Assert(isYV12(input), \
-        "Error: Input isn't YV12!. Convert it first using ConvertToYV12()." \
-    )
+Assert(isYV12(input), \
+    "Error: Input isn't YV12!. Convert it first using ConvertToYV12()." \
+)
 
-# Warn if Clip width isn't mod4.
-    Assert(Round(sW / 2) * 2 == sW, \
-        "Error: Input width isn't mod2!" + " | Current size: " + String(sW) + "x" + String(sH) + "px" \
-    )
+Assert(Round(sW / 2) * 2 == sW, \
+    "Error: Input width isn't mod2!" + " | Current size: " + String(sW) + "x" + String(sH) + "px" \
+)
 
-# Warn if Clip height isn't mod4.
-    Assert(Round(sH / 2) * 2 == sH, \
-        "Error: Input height isn't mod2!" + " | Current size: " + String(sW) + "x" + String(sH) + "px" \
-    )
+Assert(Round(sH / 2) * 2 == sH, \
+    "Error: Input height isn't mod2!" + " | Current size: " + String(sW) + "x" + String(sH) + "px" \
+)
 
-# Warn if lambda is out of range
-    Assert(!(penalty_lambda > 100 || penalty_lambda < 1), \
-        "Error: penalty_lambda value is out of range!" \
-    )
+iM = interpolate_mode
+Assert(!(iM != 1 && iM != 2 && iM != 11 && iM != 13 && iM != 21 && iM != 23), \
+    "Error: interpolate_mode value isn't in list!" \
+)
 
-# Warn if interpolate_mode isn't in list
-    iM = interpolate_mode
-    Assert(!(iM != 1 && iM != 2 && iM != 11 && iM != 13 && iM != 21 && iM != 23), \
-        "Error: interpolate_mode value isn't in list!" \
-    )
+pP = pixel_precision
+Assert(!(pP != 1 && pP != 2 && pP != 4), \
+    "Error: pixel_precision value isn't in list!" \
+)
 
-# Warn if pixel_precision isn't in list
-    pP = pixel_precision
-    Assert(!(pP != 1 && pP != 2 && pP != 4), \
-        "Error: pixel_precision value isn't in list!" \
-    )
+Assert(!(preset > 7 || preset < 0), \
+    "Error: preset value isn't in list!" \
+)
 
-# Warn if preset isn't in list
-    Assert(!(preset > 7 || preset < 0), \
-        "Error: preset value isn't in list!" \
-    )
+bO = block_overlap
+Assert(!(bO != 0 && bO != 1 && bO != 2 && bO != 3), \
+    "Error: block_overlap value isn't in list!" \
+)
 
-# Warn if block_overlap isn't in list
-    bO = block_overlap
-    Assert(!(bO != 0 && bO != 1 && bO != 2 && bO != 3), \
-        "Error: block_overlap value isn't in list!" \
-    )
+sM = search_method
+Assert(!(sM != 2 && sM != 3 && sM != 4), \
+    "Error: search_method value isn't in list!" \
+)
 
-# Warn if search_method isn't in list
-    sM = search_method
-    Assert(!(sM != 2 && sM != 3 && sM != 4), \
-        "Error: search_method value isn't in list!" \
-    )
+sR = search_range
+Assert(!(sR > 128 || sR < 4), \
+    "Error: search_range value is out of range!" \
+)
 
-# Warn if coarse_max is out of range
-    cM = coarse_max
-    Assert(!(cM > 16384 || cM < 256), \
-        "Error: coarse_max value is out of range!" \
-    )
+mC = mask_cover
+Assert(!(mC > 200 || mC < 0), \
+    "Error: mask_cover value is out of range!" \
+)
 
-# Warn if search_range is out of range
-    sR = search_range
-    Assert(!(sR > 128 || sR < 4), \
-        "Error: search_range value is out of range!" \
-    )
+mA = mask_area
+Assert(!(mA > 100 || mA < 0), \
+    "Error: mask_area value is out of range!" \
+)
 
-# Warn if mask_cover is out of range
-    mC = mask_cover
-    Assert(!(mC > 200 || mC < 0), \
-        "Error: mask_cover value is out of range!" \
-    )
+mSh = mask_sharp
+Assert(!(mSh > 3.0 || mSh < 0), \
+    "Error: mask_sharp value is out of range!" \
+)
 
-# Warn if mask_area is out of range
-    mA = mask_area
-    Assert(!(mA > 200 || mA < 0), \
-        "Error: mask_area value is out of range!" \
-    )
+Assert(isBool(demo), \
+    "Error: demo value must be a boolean!" \
+)
 
-# Warn if demo isn't boolean.
-    Assert(isBool(demo), \
-        "Error: demo value must be a boolean!" \
-    )
+dT = demo_type
+Assert(!(dT != 1 && dT != 2 && dT != 3), \
+    "Error: demo_type value isn't in list!" \
+)
 
-# Warn if demo_vertical isn't boolean.
-    dT = demo_type
-    Assert(!(dT != 1 && dT != 2 && dT != 3), \
-        "Error: demo_type value isn't in list!" \
-    )
+Assert(isBool(interlace), \
+    "Error: interlace value must be a boolean!" \
+)
 
-# Warn if interlace isn't boolean.
-    Assert(isBool(interlace), \
-        "Error: interlace value must be a boolean!" \
-    )
+Assert(isBool(gpu_accel), \
+    "Error: gpu_accel value must be a boolean!" \
+)
 
-# Warn if gpu_accel isn't boolean.
-    Assert(isBool(gpu_accel), \
-        "Error: gpu_accel value must be a boolean!" \
-    )
+Assert(isBool(framerate_mul), \
+    "Error: framerate_mul value must be a boolean!" \
+)
 
-# Warn if framerate_mul isn't boolean.
-    Assert(isBool(framerate_mul), \
-        "Error: framerate_mul value must be a boolean!" \
-    )
+Assert(isBool(blend_frame), \
+    "Error: blend_frame value must be a boolean!" \
+)
 
-# Warn if blend_frame isn't boolean.
-    Assert(isBool(blend_frame), \
-        "Error: blend_frame value must be a boolean!" \
-    )
+Assert(isBool(satd), \
+    "Error: satd value must be a boolean!" \
+)
 
-# Warn if satd isn't boolean.
-    Assert(isBool(satd), \
-        "Error: satd value must be a boolean!" \
-    )
+Assert(isBool(satd_inCoarse), \
+    "Error: satd_inCoarse value must be a boolean!" \
+)
 
-# Warn if satd_inCoarse isn't boolean.
-    Assert(isBool(satd_inCoarse), \
-        "Error: satd_inCoarse value must be a boolean!" \
-    )
+cM = coarse_max
+Assert(!(cM > 4096 || cM < 256), \
+    "Error: coarse_max value is out of range!" \
+)
 
-# Warn if some functions aren't exist.
-    # THE PARADIGM IS STILL STUCK IN MY F**KING BRAIN.
+cMm = coarse_method
+Assert(!(cMm != 2 && cMm != 3 && cMm != 4), \
+    "Error: coarse_method value isn't in list!" \
+)
+
+cMr = coarse_range
+Assert(!(cMr > 128 || cMr < 4), \
+    "Error: coarse_range value is out of range!" \
+)
+
+Assert(!(penalty_lambda > 100 || penalty_lambda < 1), \
+    "Error: penalty_lambda value is out of range!" \
+)
+
+pPl = penalty_plevel
+Assert(!(pPl != 1 && pPl != 2 && pPl != 4), \
+    "Error: penalty_plevel value isn't in list!" \
+)
+
+pLs = penalty_lsad
+Assert(!(pLs > 32768 || pLs < 2), \
+    "Error: penalty_lsad value is out of range!" \
+)
+
+pPn = penalty_pnew
+Assert(!(pPn > 128 || pPn < 1), \
+    "Error: penalty_pnew value is out of range!" \
+)
+
+pPg = penalty_pglobal
+Assert(!(pPg > 128 || pPg < 1), \
+    "Error: penalty_pglobal value is out of range!" \
+)
+
+pPz = penalty_pglobal
+Assert(!(pPz > 256 || pPz < 1), \
+    "Error: penalty_pzero value is out of range!" \
+)
+
+pPb = penalty_pnbour
+Assert(!(pPb > 128 || pPb < 1), \
+    "Error: penalty_pnbour value is out of range!" \
+)
+
+Assert(!(scene_mode != 0 && scene_mode != 1 && scene_mode != 2 && scene_mode != 3), \
+    "Error: scene_mode value isn't in list!" \
+)
+
+Assert(!(scene_m1 > 32768 || scene_m1 < 512), \
+    "Error: scene_m1 value is out of range!" \
+)
+
+Assert(!(scene_m1 > 32768 || scene_m1 < 512), \
+    "Error: scene_m1 value is out of range!" \
+)
