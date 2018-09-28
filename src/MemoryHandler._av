@@ -1,0 +1,42 @@
+# nSVPScript Script v2.0
+# by: neon-nyan
+# ----------------------------------------------------------
+# 
+
+global required_memory = (\
+    Round(\
+        ((sW * sH) * 8) * 0.130 / 1000\
+    )\
+)
+
+global avg_search_range_mem = (\
+    Floor(\
+        (required_memory * float(0.02667)\
+    ) * (\
+        (search_range + coarse_method + refine_search_range) / 3)\
+    )\
+)
+
+global avg_mask_mem = (\
+    Floor(\
+        (required_memory * float(0.00264)\
+    ) * (\
+        (search_range + coarse_method + refine_search_range) / 3)\
+    )\
+)
+
+global double_mem = 0
+global quarter_mem = (\
+    required_memory * (\
+        interlace ? float(0.5) : 0\
+    )\
+)
+
+global mem_estimate = (\
+    required_memory\
+  + double_mem\
+  + quarter_mem\
+  + avg_search_range_mem\
+)
+
+global memory_max = mem_estimate

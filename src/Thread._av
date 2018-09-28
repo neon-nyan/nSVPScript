@@ -4,6 +4,10 @@
 #
 
 SetMemoryMax(memory_max)
-global threads=threads + 1
+global threads = threads + 1
 
-SetFilterMTMode("DEFAULT_MT_MODE",2)
+SetFilterMTMode("DEFAULT_MT_MODE", 2)
+SetFilterMTMode("SVSuper", 3)
+SetFilterMTMode("AssumeTFF", 3)
+SetFilterMTMode("Interpolate", 3)
+SetFilterMTMode("mt_makeDiff", 1)

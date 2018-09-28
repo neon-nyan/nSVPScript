@@ -5,9 +5,9 @@
 
 global super_params     = """
 {
-    pel:""" + String(pixel_precision) + """,
-    scale:{up:2,down:4},
-    gpu:""" + String(gpu_accel) + """,
-    full:true
+    pel: """ + String(pixel_precision) + """,
+    scale: {up: 2, down: 4},
+    gpu: """ + String(super_gpu_accel) + """,
+    full: """ + String(pixel_precision == 1 ? false : true) + """
 }
 """
