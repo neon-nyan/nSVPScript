@@ -6,14 +6,15 @@
 global smoothfps_params = """
 {
     gpuid: """ + String(gpu_id) + """,
-    cubic: """ + String(gpu_accel) + """,
+    """ + String(super_gpu_accel?"cubic:true,":"") + """
+    linear: true,
     rate: {
         num: """ + String(framerate_num) + """,
         den: """ + String(framerate_den) + """,
         abs: """ + String(framerate_mul) + """
     },
     algo: """ + String(interpolate_mode) + """,
-    block: """ + String(!gpu_accel) + """,
+    block: """ + String(!super_gpu_accel) + """,
     mask: {
         cover: """ + String(mask_cover) + """,
         area: """ + String(mask_area) + """,

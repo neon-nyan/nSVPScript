@@ -12,8 +12,8 @@ Import("src\_init")
 Import(dirSet + "Default.ini")
 Import(dirSrc + "ConfigurationHandler._av")
 Import(dirSrc + "MemoryHandler._av")
-#Import(dirSrc + "ValueWarner._av")
-global lWarning = NO
+Import(dirSrc + "ValueWarner._av")
+#global lWarning = NO
 Import(dirSrc + "Thread._av")
 Import(dirSrc + "ParamSuper._av")
 Import(dirSrc + "ParamAnalysis._av")

@@ -5,6 +5,8 @@
 
 global lWarning = NO
 
+/*
+
 Assert(isYV12(input), \
     "Error: Input isn't YV12!. Convert it first using ConvertToYV12()." \
 )
@@ -153,4 +155,10 @@ Assert(!(scene_m1 > 32768 || scene_m1 < 512), \
 
 Assert(!(scene_m1 > 32768 || scene_m1 < 512), \
     "Error: scene_m1 value is out of range!" \
+)
+
+*/
+
+Assert(!((block_w == 8 && block_h == 8) && block_overlap == 1), \
+    "Error: Block size of 8x8 is too dangerous with block_overlap > 0 :'<" \
 )

@@ -5,13 +5,15 @@
 
 function Interpolate(clip input)
 {
-	super   = SVSuper(input, super_params)
-	vectors = SVAnalyse(super, analyse_params, \
-                      src = input)
+    input       = input
+    inputluma   = input.Tweak(sat = 0.6, dither = true)
+	super       = SVSuper(inputluma, super_params)
+	vectors     = SVAnalyse(super, analyse_params, \
+                      src = inputluma)
 
 	SVSmoothFps(input, super, vectors, \
                 smoothfps_params, mt = threads, \
-                src = input)
+                src = inputluma)
     interlace ? Eval("""
         AssumeFrameBased \
         .DoubleWeave \
@@ -22,17 +24,19 @@ function Interpolate(clip input)
 
     demo ? Eval("""
     
-        sinput      = input.ChangeFPS(framerate_num, framerate_den, linear = false)
-        pinput      = last.ChangeFPS(framerate_num, framerate_den, linear = false)
-        sinputR     = nNumSeparate(sR, start = StrLen(String(sR)) - 6, length = 3)
+        evaluateS   = Eval(String("input" + String(bypass_frame ? ".ChangeFPS(input.framerate() / " + String(bypass_value) + ")" : "")))
+        evaluateP   = Eval(String("last" + String(bypass_frame ? ".ChangeFPS(last.framerate() / " + String(bypass_value) + ")" : "")))
+        sinput      = evaluateS.ChangeFPS(Float(framerate_num / framerate_den) / bypass_value, linear = true)
+        pinput      = evaluateP.ChangeFPS(Float(framerate_num / framerate_den) / bypass_value, linear = true)
+        sinputR     = nNumSeparate(evaluateS.framerate(), start = StrLen(String(evaluateS.framerate())) - 6, length = 3)
         pinputR     = nNumSeparate(pinput.FrameRate(), start = StrLen(String(pinput.FrameRate())) - 6, length = 3)
         pinputR_i   = nNumSeparate(pinput.FrameRate(), start = StrLen(String(pinput.FrameRate())) - 6, length = 3, divide = 2)
         
         /*
         * Horizontal demo mode variables section
         */
-        dHoriz_nF1  = sinput.crop(0, 0, -(sW / 2) - 2, 0)
-        dHoriz_sF1  = pinput.crop((sW / 2) + 2, 0, 0, 0)
+        dHoriz_nF1  = demo_type == 1 ? sinput.crop(0, 0, -(sW / 2) - 2, 0) : sinput
+        dHoriz_sF1  = demo_type == 1 ? pinput.crop((sW / 2) + 2, 0, 0, 0) : pinput
         dHoriz = StackHorizontal(dHoriz_nF1.Subtitle("Plain @" \
             + String(sinputR) + "fps", \
             align = 2, \
@@ -54,21 +58,22 @@ function Interpolate(clip input)
             size = Round(sW - (sW * 97.8) / 100) \
         )
         demoType_1  = dHoriz
+        demoType_4  = dHoriz
         
         /*
         * Vertical demo mode variables section
         */
-        dVerti_sF1  = pinput.crop(0, 0, 0, -(sH / 2) - 4)
-        dVerti_nF1  = sinput.crop(0, (sH / 2) + 2, 0, 0)
-        dVerti = StackVertical(dVerti_sF1.Subtitle("Smoothed @" \
-            + (interlace ? pinputR_i : pinputR) \
-            + (interlace ? "fps/i" : "fps/p"), \
+        dVerti_nF1  = demo_type == 2 ? sinput.crop(0, 0, 0, -(sH / 2) - 4) : sinput
+        dVerti_sF1  = demo_type == 2 ? pinput.crop(0, (sH / 2) + 2, 0, 0) : pinput
+        dVerti = StackVertical(dVerti_nF1.Subtitle("Plain @" \
+            + String(sinputR) + "fps", \
             align = 8, \
             size = Round(sW - (sW * 97.8) / 100) \
         ), \
         BlankClip(width = dVerti_nF1.width(), height = 6).ConvertToYV12(), \
-        dVerti_nF1.Subtitle("Plain @" \
-            + String(sinputR) + "fps", \
+        dVerti_sF1.Subtitle("Smoothed @" \
+            + (interlace ? pinputR_i : pinputR) \
+            + (interlace ? "fps/i" : "fps/p"), \
             align = 2, \
             size = Round(sW - (sW * 97.8) / 100) \
         )).Subtitle( \
@@ -81,12 +86,37 @@ function Interpolate(clip input)
             size = Round(sW - (sW * 97.8) / 100) \
         )
         demoType_2  = dVerti
+        demoType_5  = dVerti
         
         /*
         * Frame difference demo mode variables section
         */
-        diff        = mt_makeDiff(sinput, pinput, chroma = "process", y = 3, u = 2, v = 2)
-        demoType_3  = diff
+        demoType_3  = mt_makeDiff(sinput, pinput, chroma = "process", y = 3, u = 3, v = 2)\
+            .Subtitle("[Debug] | Video size:" \
+            + String(pinput.width()) + "x" \ 
+            + String(pinput.height()) \
+            + String(interlace ? "i TFF" : "p") \
+            + " | Preset: " + presetName, \
+            align = 8, \
+            size = Round(pinput.width() - (pinput.width() * 97.8) / 100) \
+        )
+        
+        /*
+         \
+            "Video size:" \
+            + String(width) + "x" \
+            + String(height) \
+            + String(interlace ? "i TFF" : "p") \
+            + " | Preset: " + presetName, \
+            align = 8, \
+        */
+        
+        /*
+        * All frame demo mode variables section
+        */
+        stack_half_demo6    = BlankClip(width=sW/2-(Floor(sW/2)*2==sW?0:1),height=sH).ConvertToYV12()
+        demoType_6          = StackHorizontal(stack_half_demo6, demoType_3, stack_half_demo6)
+        demoType_6          = StackVertical(Spline64Resize(demoType_4,demoType_6.width(),demoType_6.height()),BlankClip(width=demoType_6.width(),height=6).ConvertToYV12(),demoType_6)
         
         /* Confirm demo type. */
         demo_fr     = Eval("demoType_" + String(demo_type))

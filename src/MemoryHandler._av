@@ -5,7 +5,7 @@
 
 global required_memory = (\
     Round(\
-        ((sW * sH) * 8) * 0.125 / 1000\
+        ((sW * sH) * 8) * 0.130 / 1000\
     )\
 )
 

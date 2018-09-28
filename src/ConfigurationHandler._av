@@ -35,10 +35,14 @@ p = preset
     global presetName = "neon-nyan's Preset [Default]"
  """)\
 :(p == 7) ? Eval("""
+    global dConf = dirPreset + String(p) + "_nyan_cpu"
+    global presetName = "neon-nyan's Preset [only CPU]"
+ """)\
+:(p == 8) ? Eval("""
     global dConf = dirPreset + String(p) + "_Render"
     global presetName = "Placebo - Render Preset"
 """)\
-:NO
+: NO
 
 /*
 * neon-nyan's absolute scaling calculator
@@ -125,8 +129,21 @@ function nNumSeparate(float "in", int "start", int "length", float "divide")
     return n
 }
     
-# Import the User settings after import the default one.
+/*
+* Import the User settings after import the default one.
+*/
 Import(dConf)
+
+/* 
+* Frame Bypass Handler
+*/
+global bypass_value = bypass_pass == 1 ? 2 : bypass_pass == 2 ? 3 : bypass_pass == 3 ? 4 : 2
+
+bypass_frame ? Eval("""
+    global bypass_value = bypass_value
+""") : Eval("""
+    global bypass_value = 1
+""")
 
 function nSVPScript()
 {
