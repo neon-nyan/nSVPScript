@@ -6,8 +6,8 @@
 global smoothfps_params = """
 {
     gpuid: """ + String(gpu_id) + """,
-    """ + String(super_gpu_accel?"cubic:true,":"") + """
-    linear: true,
+    cubic:""" + String(super_gpu_accel?"true":"false") + """,
+    linear:""" + String(super_gpu_accel?"true":"false") + """,
     rate: {
         num: """ + String(framerate_num) + """,
         den: """ + String(framerate_den) + """,

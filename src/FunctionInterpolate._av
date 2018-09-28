@@ -6,14 +6,14 @@
 function Interpolate(clip input)
 {
     input       = input
-    inputluma   = input.Tweak(sat = 0.6, dither = true)
-	super       = SVSuper(inputluma, super_params)
+	super       = SVSuper(input, super_params)
 	vectors     = SVAnalyse(super, analyse_params, \
-                      src = inputluma)
+                      src = input)
 
 	SVSmoothFps(input, super, vectors, \
                 smoothfps_params, mt = threads, \
-                src = inputluma)
+                src = input)
+
     interlace ? Eval("""
         AssumeFrameBased \
         .DoubleWeave \

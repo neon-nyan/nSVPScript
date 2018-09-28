@@ -7,7 +7,8 @@ SetMemoryMax(memory_max)
 global threads = threads + 1
 
 SetFilterMTMode("DEFAULT_MT_MODE", 2)
-SetFilterMTMode("SVSuper", 3)
+SetFilterMTMode("SVSuper",1)
+SetFilterMTMode("SVAnalyse",1)
 SetFilterMTMode("AssumeTFF", 3)
 SetFilterMTMode("Interpolate", 3)
 SetFilterMTMode("mt_makeDiff", 1)

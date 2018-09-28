@@ -13,21 +13,21 @@ global analyse_params   = """
         overlap: """ + String(block_overlap) + """
     },
     main: {
-        levels: 4,
+        levels: """ + String(search_level) + """,
         search: {
             type: """ + String(search_method) + """,
-            distance: """ + String(search_method == 3 ? "" : "-") + String(search_range) + """,
+            distance: """ + String(search_range) + """,
             satd: """ + String(satd) + """,
             sort: """ + String(sort) + """,
             coarse: {
                 width: """ + String(coarse_max) + """,
                 type: """ + String(coarse_method) + """,
-                distance: """ + String(coarse_method == 3 ? "" : "-") + String(coarse_range) + """,
-                satd: """ + String(satd_inCoarse) + """,
+                distance: """ + String(coarse_range) + """,
+                satd: """ + String(coarse_satd) + """,
                 trymany: """ + String(trymany) + """,
                 bad: {
                     sad: """ + String(bad_sad) + """,
-                    range: """ + String(search_method == 3 ? "" : "-") + String(bad_range) + """
+                    range: """ + String(bad_range) + """
                 }
             }
         }
@@ -46,11 +46,11 @@ global analyse_params   = """
         thsad: """ + String(refine_thsad) + """,
         search: {
             type: """ + String(refine_search_method) + """,
-            distance: """ + String(refine_search_range == 3 ? "" : "-") + String(refine_search_range) + """, """ /* same as pel */ + """
+            distance: """ + String(refine_search_range) + """, """ /* same as pel */ + """
             satd: """ + String(refine_search_satd) + """
         },
         penalty: {
-            pnew: """ + String(penalty_pnew) + """
+            pnew: """ + String(refine_penalty_pnew) + """
         }
     }],
     special: {delta: 1}

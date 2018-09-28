@@ -10,48 +10,52 @@ global gpu_id=12
 global framerate_num=60
     global framerate_den=1
     global framerate_mul=true
-    global bypass_frame = false
-    global bypass_pass = 1
+    global bypass_frame=false
+    global bypass_pass=1
 
-global interpolate_mode=23
+global interpolate_mode=2
 global pixel_precision=2
+global pixel_upscale_mode=2
+global pixel_downscale_mode=4
 
 global blend_frame=false
     global block_w=8
     global block_h=8
-    global block_overlap=0
+    global block_overlap=3
 
 global search_method=4
-global search_range=5
+global search_range=-4
+global search_level=3
+global search_trymany=true
+global search_sort=true
 
 global coarse_max=1050
-    global coarse_method=search_method
-    global coarse_range=search_method
+    global coarse_method=4
+    global coarse_range=-6
+    global coarse_satd=true
 
-global satd=false
-    /* UNSAFE!!! DON'T ENABLE satd_inCoarse. IT GONNA DESTROY SOME VECTOR BLOCKS! */
-    global satd_inCoarse=true
+global satd=true
 
-global bad_sad=1000
-    global bad_range=Round(search_method * 2.1)
+global bad_sad=4000
+    global bad_range=24
 
-#global penalty_lambda=10.0
-global penalty_lambda=13.7
-    global penalty_plevel=1
+global penalty_lambda=15.0
+    global penalty_plevel=4.0
     global penalty_lsad=8000
-    global penalty_pnew=50
-    global penalty_pglobal=50
-    global penalty_pzero=100
-    global penalty_pnbour=50
+    global penalty_pnew=100
+    global penalty_pglobal=100
+    global penalty_pzero=200
+    global penalty_pnbour=100
     global penalty_prev=Round(((framerate_num / framerate_den) * 75) / 100)
 
-global refine_thsad=1000
-    global refine_search_method=search_method
-    global refine_search_range=pixel_precision
-    global refine_search_satd=false
+global refine_thsad=2000
+    global refine_search_method=4
+    global refine_search_range=-6
+    global refine_penalty_pnew=50
+    global refine_search_satd=true
 
     global mask_cover=100
-    global mask_area=30
+    global mask_area=100
     global mask_sharp=1.0
     
     global demo=false
@@ -70,10 +74,7 @@ global scene_mode=0
 global scene_mode=0
     global scene_m1=1600
     global scene_m2=2800
-    global scene_limit=3000
-    global scene_zero=200
-    global scene_thres=40
-    global scene_luma=2.0
-
-global trymany=false
-global sort=satd ? false : true
+    global scene_limit=8000
+    global scene_zero=100
+    global scene_thres=70
+    global scene_luma=3.0
