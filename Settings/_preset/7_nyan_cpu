@@ -26,7 +26,7 @@ global blend_frame=false
 global search_method=4
 global search_range=-4
 global search_level=3
-global search_trymany=true
+global search_trymany=false
 global search_sort=true
 
 global coarse_max=1050
