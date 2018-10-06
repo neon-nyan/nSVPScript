@@ -12,7 +12,7 @@
 *
 *       This script has been optimized for animation and film.
 * 
-*       Thanks to my friends and my crush for supporting me to create this script
+*       Thanks to my friends and my "doi" for supporting me to create this script
 *   and make it possible! ^_^)
 * 
 * 2. Requirements
