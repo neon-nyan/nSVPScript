@@ -1,0 +1,13 @@
+/*
+* nSVPScript        | Licensed under The GNU LGPL-3.0
+* Copyright © 2018  | SMAKTA IT Club - SMK Negeri 3 Kota Tangerang
+*/
+
+global n_eT_ERR             = "ERROR: "
+global n_eT_WARN            = "WARNING: "
+
+global n_eM_NOTYV12CLIP     = "Punten, but your input is not a YV12 clip :<"            + " | Error: 1"
+global n_eM_MAXMEMORYERR    = "The MaxMemory that you've set is < 256 MB"               + " | Error: 2"
+global n_eM_INTERLACEDCLIP  = "Your clip was interlaced. De-interlace it first!"        + " | Error: 3"
+global n_eM_INVALIDVER      = "at least AviSynth+ required!"                            + " | Error: 4"
+global n_eM_OK              = "OK!"                                                     + " | Error: 0"

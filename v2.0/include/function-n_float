@@ -1,0 +1,35 @@
+/*
+* nSVPScript        | Licensed under The GNU LGPL-3.0
+* Copyright © 2018  | SMAKTA IT Club - SMK Negeri 3 Kota Tangerang
+*/
+
+function n_float(float "in", int "start", int "length", float "divide")
+{
+    Assert(Defined(in), "error nNumSeparate(): Input must be exist!")
+    start   = Default(start, 1)
+    length  = Default(length, 3)
+    divide  = Default(divide, 1)
+    
+    in      = in / divide
+    
+    i_Int   = Int(in)
+    i_Frac  = MidStr( \
+        String(Frac(in)), \
+        start, \
+        length \
+    )
+
+    i_FracI = Int( \
+        Eval(i_Frac) \
+    )
+
+    n       = String( \
+        String(i_Int) \
+        + String( \
+            i_FracI > 0 ? \
+                "." + String(i_FracI) : "" \
+        ) \
+    )
+    
+    return n
+}
