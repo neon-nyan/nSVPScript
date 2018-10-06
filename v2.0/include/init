@@ -4,9 +4,9 @@
 */
 
 /* Set some function it's own thread mode */
-SetFilterMTMode("SVSmoothFps", 2)
-SetFilterMTMode("SVSuper", 1)
-SetFilterMTMode("SVAnalyse", 1)
+SetFilterMTMode("SVSmoothFps",   MT_MULTI_INSTANCE)     # Same as MTMode=2
+SetFilterMTMode("SVSuper",          MT_NICE_FILTER)     # Same as MTMode=1
+SetFilterMTMode("SVAnalyse",        MT_NICE_FILTER)     # Same as MTMode=1
 
 SetPlanarLegacyAlignment(false)
 
