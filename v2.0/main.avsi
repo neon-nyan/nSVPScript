@@ -1,5 +1,5 @@
 /*
-* nSVPScript | an Advanced configuration script for using SVP 4 library on AviSynth
+* nSVPScript | a Configurable script for using SVP 4 library on AviSynth
 * ---------------------------------------------------------------------------------
 * This script using third party library "SVP 4"
 * http://www.svp-team.com/wiki/Plugins:_SVPflow
@@ -39,7 +39,7 @@
 * This script was licensed under the GNU General Public License version 3
 * 
 * You are able to share this work to everyone with "NOTES", you must include the
-* source of the script.
+* license and the source of the script.
 * 
 * DO NOT SHARE/RE-PUBLISH THIS SCRIPT WITH SVP 4 LIBRARY INSIDE!!!
 * YOU ARE NOT ABLE TO CLAIM THIS WORK AS YOUR OWN!!!
