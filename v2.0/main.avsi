@@ -36,7 +36,7 @@
 *   - SMAKTA IT Club
 * 
 * ---------------------------------------------------------------------------------
-* This script was licensed under the GNU Lesser General Public License version 3
+* This script was licensed under the GNU General Public License version 3
 * 
 * You are able to share this work to everyone with "NOTES", you must include the
 * source of the script.
