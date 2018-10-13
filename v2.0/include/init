@@ -1,12 +1,12 @@
 /*
-* nSVPScript        | Licensed under The GNU GPL-3.0
+* nSVScript         | Licensed under The GNU GPL-3.0
 * Copyright © 2018  | SMAKTA IT Club - SMK Negeri 3 Kota Tangerang
 */
 
 /* Set some function it's own thread mode */
-SetFilterMTMode("SVSmoothFps",   MT_MULTI_INSTANCE)     # Same as MTMode=2
-SetFilterMTMode("SVSuper",          MT_NICE_FILTER)     # Same as MTMode=1
-SetFilterMTMode("SVAnalyse",        MT_NICE_FILTER)     # Same as MTMode=1
+SetFilterMTMode("MFlowFps",      MT_MULTI_INSTANCE)     # Same as MTMode=2
+SetFilterMTMode("MSuper",           MT_NICE_FILTER)     # Same as MTMode=1
+SetFilterMTMode("MAnalyse",         MT_NICE_FILTER)     # Same as MTMode=1
 
 SetPlanarLegacyAlignment(false)
 

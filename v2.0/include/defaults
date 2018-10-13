@@ -1,18 +1,19 @@
 /*
-* nSVPScript        | Licensed under The GNU GPL-3.0
+* nSVScript         | Licensed under The GNU GPL-3.0
 * Copyright © 2018  | SMAKTA IT Club - SMK Negeri 3 Kota Tangerang
 */
 
-
-/* clip variable */
+# clip variable
 input           = default(input, last)
 
-/* utilisation variable */
+/*
+
+# utilisation variable
 debug           = default(debug, "none")
 gpu             = default(gpu, true)
 gpuid           = default(gpuid, 0)                 # 0 means "Default GPU"
 
-/* configuration variable */
+# configuration variable
 preset          = default(preset, "high")
 framerate       = default(framerate, 60.0)
 framerate_den   = default(framerate_den, 2.0)
@@ -28,6 +29,4 @@ vector_mask     = default(vector_mask, 100)
 vector_area     = default(vector_area, 30)
 scene_detect    = default(scene_detect, "strong")
 frame_mode      = default(frame_mode, "interlace")
-_adv_super      = default(_adv_super, "none")
-_adv_analyze    = default(_adv_analyze, "none")
-_adv_smooth     = default(_adv_smooth, "none")
+*/
