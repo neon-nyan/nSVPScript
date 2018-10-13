@@ -2,16 +2,15 @@
 * neon-nyan's SmoothVideo Script
 * The easy-to-use Configurable script for using MVTools2 on AviSynth
 * ---------------------------------------------------------------------------------
-* This script using third party library "MVTools2"
-* https://github.com/pinterf/mvtools
+* Disclaimer:
+*   This script using third party library "MVTools2"
+*   https://github.com/pinterf/mvtools
 * 
 * 1. About
 *       The script is purposes for give you better interpolated video results,
 *   make you have full control to configure and using MVTools 2 more easier. There
 *   are few presets, so you do not need to write long arguments on your own
 *   script.
-*
-*       This script has been optimized for animation and film.
 * 
 *       Thanks to my friends and my "doi" for supporting me to create this script
 *   and make it possible! ^w^)/
