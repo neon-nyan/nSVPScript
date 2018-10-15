@@ -11,10 +11,11 @@ function _motionEstimate(clip a)
     {
         _a = ScriptClip(a, """
             Subtitle(c, \
-                  "Average Motion(YUV): " + dat \
+                  "Average Motion(avg.): " + dat \
                 + "\n +-> values(Y): " + n_float(getDiffsY,3,3,1) \
                 + "\n +-> values(U): " + n_float(getDiffsU,3,3,1) \
                 + "\n +-> values(V): " + n_float(getDiffsV,3,3,1) \
+                + "\n +-> values(avg.): " + n_float(getDiffs,3,3,1) \
                 + "\n +-> Framerate: " + n_float(getFramerate,3,3,1) + "fps (" \
                     + String(c.FrameRateNumerator()) + "/" + String(c.FrameRateDenominator()) \
                     + ")" \
@@ -31,6 +32,8 @@ function _motionEstimate(clip a)
                 "Aggressive" : \
             getDiffs > 3 ? \
                 "Strong" : \
+            getDiffs < 0.0125 ? \
+                "Still" : \
                 "Low"
         """)
     }
