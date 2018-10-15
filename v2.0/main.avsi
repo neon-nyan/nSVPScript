@@ -12,8 +12,8 @@
 *   are few presets, so you do not need to write long arguments on your own
 *   script.
 * 
-*       Thanks to my friends and my "doi" for supporting me to create this script
-*   and make it possible! ^w^)/
+*       Thanks to my friends and my "doi" for supporting me to create this
+*   script and make it possible! ^w^)/
 * 
 * 2. Requirements
 *       - MVTools 2 library
@@ -56,11 +56,10 @@ function nSVScript(clip input)
     import(n_defDir + "include/defaults")
     
     /* TODO: Check the clip */
-    
-    /* Check if the Clip is YV12 or not. If not, throw the error */
-    !(isYV12(input)) ? n_throwError(1) : NOP
+    !(isYV12(input) || isYV16(input) || isYV24(input)) ? n_throwError(1) : NOP
     n_isMOD(input, 2) ? n_throwError(5) : NOP
     
     import(n_defDir + "include/config-translate")
     import(n_defDir + "include/config-rules")
+    import(n_defDir + "include/_debug")
 }

@@ -1,0 +1,38 @@
+/*
+* nSVScript         | Licensed under The GNU GPL-3.0
+* Copyright © 2018  | SMAKTA IT Club - SMK Negeri 3 Kota Tangerang
+*/
+
+function _motionEstimate(clip a)
+{
+    global sW = a.width()
+    global c = a
+    try
+    {
+        _a = ScriptClip(a, """
+            Subtitle(c, \
+                  "Motion: " + dat \
+                + "\n +-> values(Y): " + n_float(getDiffs,3,3,1) \
+                + "\n +-> Framerate: " + n_float(getFramerate,3,3,1) + "fps (" \
+                    + String(c.FrameRateNumerator()) + "/" + String(c.FrameRateDenominator()) \
+                    + ")" \
+            , lsp=2, size=Round(sW - (sW * 96.8) / 100) \
+            , font = "Consolas", text_color=$00FFFFFF, halo_color=$88000000)
+        """)
+        _b = FrameEvaluate(_a, """
+            getFramerate = c.frameRate()
+            getDiffs = YDifferenceFromPrevious(c)
+            dat = getDiffs > 14 ? \
+                "Aggressive" : \
+            getDiffs > 3 ? \
+                "Strong" : \
+                "Low"
+        """)
+    }
+    catch(err_msg)
+    {
+        Assert(false, "unknown error!" + String(err_msg))
+    }
+
+    return _b
+}

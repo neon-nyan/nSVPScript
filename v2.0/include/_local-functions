@@ -5,3 +5,4 @@
 
 import(n_defDir + "include/function-n_float")
 import(n_defDir + "include/function-n_isMOD")
+import(n_defDir + "include/function-n_motionDetect")

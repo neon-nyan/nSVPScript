@@ -14,7 +14,7 @@ function n_throwError(int "errcode", int "prior")
                   n_eT_ERR             :\
                   n_eT_WARN
     _errcode    = errcode == 1 ?        \
-                  n_eM_NOTYV12CLIP     :\
+                  n_eM_NOTYVCLIP       :\
                   errcode == 2 ?        \
                   n_eM_MAXMEMORYERR    :\
                   errcode == 3 ?        \
