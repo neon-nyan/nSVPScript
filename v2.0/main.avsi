@@ -56,7 +56,7 @@ function nSVScript(clip input)
     import(n_defDir + "include/defaults")
     
     /* TODO: Check the clip */
-    !(isYV12(input) || isYV16(input) || isYV24(input)) ? n_throwError(1) : NOP
+    !(isYV12(input) || isYV16(input) || isYV24(input) || isYV411(input) || isY(input)) ? n_throwError(1) : NOP
     n_isMOD(input, 2) ? n_throwError(5) : NOP
     
     import(n_defDir + "include/config-translate")

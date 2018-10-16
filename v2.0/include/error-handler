@@ -5,10 +5,12 @@
 
 import(n_defDir + "include\error-messages")
 
-function n_throwError(int "errcode", int "prior")
+function n_throwError(int "errcode", int "prior", string "errmsg")
 {
     prior       = default(prior, 1)
     errcode     = default(errcode, 1)
+    errstr      = default(errmsg, "")
+    errstr      = !(errstr == "") ? " [" + String(errmsg) + "]" : ""
     
     _prior      = prior > 0 ?           \
                   n_eT_ERR             :\
@@ -23,7 +25,9 @@ function n_throwError(int "errcode", int "prior")
                   n_eM_INVALIDVER      :\
                   errcode == 5 ?        \
                   n_eM_NOTMOD          :\
+                  errcode == 255 ?      \
+                  n_eM_UNKNOWN         :\
                   n_eM_OK
 
-    Assert(!(prior == 1), n_eT_ERR + _errcode)
+    Assert(!(prior == 1), n_eT_ERR + _errcode + errstr)
 }
