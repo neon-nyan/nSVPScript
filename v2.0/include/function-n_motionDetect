@@ -41,8 +41,8 @@ function _motionEstimate(clip a)
         try
         {
             getDiffsY = YDifferenceFromPrevious(c)
-            getDiffsU = !(c.isY) ? UDifferenceFromPrevious(c) : 0
-            getDiffsV = !(c.isY) ? VDifferenceFromPrevious(c) : 0
+            getDiffsU = !c.isY ? UDifferenceFromPrevious(c) : 0
+            getDiffsV = !c.isY ? VDifferenceFromPrevious(c) : 0
         }
         catch(err_msg)
         {
