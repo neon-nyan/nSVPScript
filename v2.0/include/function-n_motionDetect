@@ -5,11 +5,11 @@
 
 function _motionEstimate(clip a)
 {
-    global sW = a.width()
-    global sH = a.height()
     global c = a
+    global sW = c.width()
+    global sH = c.height()
 
-    _a = ScriptClip(a, """
+    _a = ScriptClip(c, """
         Subtitle(c, \
               "Average motion(avg.): " + dat \
             + "\n +-> values(Y): " + n_float(getDiffsY,3,2,1) \
@@ -37,18 +37,19 @@ function _motionEstimate(clip a)
             "4:1:1 (YV411-like format)" : \
             "4:2:0"
 
-        getFramerate = c.frameRate()
+        getFramerate = Float(c.FrameRateNumerator()) / Float(c.FrameRateDenominator())
         try
         {
             getDiffsY = YDifferenceFromPrevious(c)
-            getDiffsU = !(c.isY || c.isYV411) ? UDifferenceFromPrevious(c) : 0
-            getDiffsV = !(c.isY || c.isYV411) ? VDifferenceFromPrevious(c) : 0
-            getDiffs = (getDiffsY + getDiffsU + getDiffsV) / 3
+            getDiffsU = !(c.isY) ? UDifferenceFromPrevious(c) : 0
+            getDiffsV = !(c.isY) ? VDifferenceFromPrevious(c) : 0
         }
         catch(err_msg)
         {
             n_throwError(255, errmsg=err_msg)
         }
+        
+        getDiffs = (getDiffsY + getDiffsU + getDiffsV) / 3
         dat = getDiffs > 14 ? \
             "Aggressive" : \
         getDiffs > 3 ? \
