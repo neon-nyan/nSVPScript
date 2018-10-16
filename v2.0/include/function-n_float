@@ -3,33 +3,22 @@
 * Copyright © 2018  | SMAKTA IT Club - SMK Negeri 3 Kota Tangerang
 */
 
+import(n_defDir + "include/error-handler")
+
 function n_float(float "in", int "start", int "length", float "divide")
 {
-    Assert(Defined(in), "error n_float(): Input must be exist!")
-    start   = Default(start, 1)
-    length  = Default(length, 3)
-    divide  = Default(divide, 1)
+    !Defined(in) ? n_throwError(99) : null
+    start = Default(start, 3)
+    length = Default(length, 3)
+    divide = Default(divide, 1)
     
-    in      = in / divide
+    in = in / divide
     
-    i_Int   = Int(in)
-    i_Frac  = MidStr( \
-        String(Frac(in)), \
-        start, \
-        length \
-    )
+    i_Int = Int(in)
+    i_Frac = MidStr(String(Frac(in)), start, length)
 
-    i_FracI = Int( \
-        Eval(i_Frac) \
-    )
+    i_FracI = Int(Eval(i_Frac))
+    n = String(String(i_Int) + String(i_FracI > 0 ? "." + String(i_FracI) : ""))
 
-    n       = String( \
-        String(i_Int) \
-        + String( \
-            i_FracI > 0 ? \
-                "." + String(i_FracI) : "" \
-        ) \
-    )
-    
     return n
 }

@@ -15,3 +15,5 @@ global n_defDir_include     = "include/"
 global n_defDir             = ScriptDir()
 global n_defWord            = n_defDir.StrLen() - n_defDir_include.StrLen()
 global n_defDir             = String(MidStr(String(n_defDir), 1, n_defWord))
+
+function null(){ return NOP }

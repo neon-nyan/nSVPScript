@@ -25,6 +25,8 @@ function n_throwError(int "errcode", int "prior", string "errmsg")
                   n_eM_INVALIDVER      :\
                   errcode == 5 ?        \
                   n_eM_NOTMOD          :\
+                  errcode == 99 ?       \
+                  n_eM_NFLOAT_NOINPUT  :\
                   errcode == 255 ?      \
                   n_eM_UNKNOWN         :\
                   n_eM_OK
