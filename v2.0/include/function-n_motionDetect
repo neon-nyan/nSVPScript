@@ -3,7 +3,7 @@
 * Copyright © 2018  | SMAKTA IT Club - SMK Negeri 3 Kota Tangerang
 */
 
-function _motionEstimate(clip a)
+function n_motionDetect(clip a)
 {
     global c = a
     global sW = c.width()
