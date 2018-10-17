@@ -4,4 +4,4 @@
 */
 
 # TODO: DEBUG
-_motionEstimate(input)
+n_motionDetect(input)
