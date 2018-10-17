@@ -37,7 +37,7 @@ function _motionEstimate(clip a)
             "4:1:1 (YV411-like format)" : \
             "4:2:0"
 
-        getFramerate = Float(c.FrameRateNumerator()) / Float(c.FrameRateDenominator())
+        getFramerate = c.FrameRate()
         try
         {
             getDiffsY = YDifferenceFromPrevious(c)
