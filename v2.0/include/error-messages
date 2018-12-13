@@ -1,0 +1,16 @@
+/*
+* nSVScript         | Licensed under The GNU GPL-3.0
+* Copyright © 2018  | SMAKTA IT Club - SMK Negeri 3 Kota Tangerang
+*/
+
+global n_eT_ERR             = "ERROR: "
+global n_eT_WARN            = "WARNING: "
+
+global n_eM_NOTYVCLIP       = "Punten, your input is not a Y/YV[411/12/16/24] clip ._.)/" + " | Error: 1"
+global n_eM_MAXMEMORYERR    = "The MaxMemory that you've set is < 384 MB"               + " | Error: 2"
+global n_eM_INTERLACEDCLIP  = "Your clip was interlaced. De-interlace it first!"        + " | Error: 3"
+global n_eM_INVALIDVER      = "at least AviSynth+ required!"                            + " | Error: 4"
+global n_eM_NOTMOD          = "The clip is not modded by 2 clip!"                       + " | Error: 5"
+global n_eM_NFLOAT_NOINPUT  = "n_float() - No input defined! ._.)"                      + " | Error: 99"
+global n_eM_UNKNOWN         = "Unknown Error!"                                          + " | Error: 255"
+global n_eM_OK              = "OK!"                                                     + " | Error: 0"

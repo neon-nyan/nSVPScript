@@ -18,13 +18,13 @@ global analyse_params   = """
             type: """ + String(search_method) + """,
             distance: """ + String(search_range) + """,
             satd: """ + String(satd) + """,
-            sort: """ + String(sort) + """,
+            sort: """ + String(search_sort) + """,
             coarse: {
                 width: """ + String(coarse_max) + """,
                 type: """ + String(coarse_method) + """,
                 distance: """ + String(coarse_range) + """,
                 satd: """ + String(coarse_satd) + """,
-                trymany: """ + String(trymany) + """,
+                trymany: """ + String(search_trymany) + """,
                 bad: {
                     sad: """ + String(bad_sad) + """,
                     range: """ + String(bad_range) + """

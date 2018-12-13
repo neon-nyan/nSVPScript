@@ -1,0 +1,63 @@
+/*
+* nSVScript         | Licensed under The GNU GPL-3.0
+* Copyright © 2018  | SMAKTA IT Club - SMK Negeri 3 Kota Tangerang
+*/
+
+function n_motionDetect(clip a)
+{
+    global c = a
+    global sW = c.width()
+    global sH = c.height()
+
+    _a = ScriptClip(c, """
+        Subtitle(c, \
+              "Average motion(avg.): " + dat \
+            + "\n +-> values(Y): " + n_float(getDiffsY,3,2,1) \
+            + "\n +-> values(U): " + n_float(getDiffsU,3,2,1) \
+            + "\n +-> values(V): " + n_float(getDiffsV,3,2,1) \
+            + "\n +-> values(avg.): " + n_float(getDiffs,3,2,1) \
+            + "\nFramerate: " + n_float(getFramerate,3,3,1) + "fps (" \
+                + String(c.FrameRateNumerator()) + "/" + String(c.FrameRateDenominator()) \
+                + ")" \
+            + "\nFrame Size: " + String(sW) + "x" + String(sH) + "px" \
+            + "\n +-> Bit depth: " + String(getDepth) + "bit" \
+            + "\n +-> Color format: " + String(getColorFormat) \
+        , lsp=2, size=Round(sW - (sW * 96.8) / 100) \
+        , font = "Calibri Light", text_color=$00FFFFFF, halo_color=$88000000)
+    """)
+    _b = FrameEvaluate(_a, """
+        getDepth = c.BitsPerComponent()
+        getColorFormat = c.is444 ? \
+            "4:4:4" : \
+        c.is422 ? \
+            "4:2:2" : \
+        c.isY ? \
+            "4:0:0 (Y only)" : \
+        c.isYV411 ? \
+            "4:1:1 (YV411-like format)" : \
+            "4:2:0"
+
+        getFramerate = c.FrameRate()
+        try
+        {
+            getDiffsY = YDifferenceFromPrevious(c)
+            getDiffsU = !c.isY ? UDifferenceFromPrevious(c) : 0
+            getDiffsV = !c.isY ? VDifferenceFromPrevious(c) : 0
+        }
+        catch(err_msg)
+        {
+            n_throwError(255, errmsg=err_msg)
+        }
+        
+        getDiffs = (getDiffsY + getDiffsU + getDiffsV) / 3
+        dat = getDiffs > 14 ? \
+            "Aggressive" : \
+        getDiffs > 3 ? \
+            "Strong" : \
+        getDiffs < 0.0125 ? \
+            "Still" : \
+            "Low"
+    """)
+
+    return _b
+}

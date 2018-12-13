@@ -8,8 +8,8 @@ Note:
 
 [Release Notes]
 
-- v2.0   [August 5th, 2018][Stable]
-    note: This update focused to improve processing
+- v2.0_beta   [September 28th, 2018][Beta]
+    note: This update focused for improve processing
           performance, Improvement of frame quality, cut scenes
           detection and support of GPU acceleration.
 
@@ -17,73 +17,29 @@ Note:
           that doesn't support OpenCL acceleration. For prevent
           that, you can try to disable it with gpu_accel = false
 
-    + Re-factor some code styles to be more acceptable.
-    + Set max_memory value -> 1024 or -/+ 4GB.
-    + Set Max CPU threads usage -> 5 threads.
-    + Set mask area value -> 32 for better cover/uncovering
-      result.
-    + Enable OpenCL GPU acceleration by default.
-    + Change vector grip size -> 16x16 with 0 overlap by
-      default.
-    + Change search_method -> 2 [Hexagon search].
-    + Make demo frames syncronized again.
-    + Make blend_frame mode enabled by default.
-    + Re-align frame size in demo into correct value.
-    + Performance increases in demo_mode.
-      Note: if you're using ffdshow, make sure that
-      "Buffer back/ahead" was enabled before.
-    + Decrease search_range value -> 5.
-    + Normalize scene limit values in smoothfps_params variable.
-      It increases smoothness of frame a bit.
-    + Normalize refine's thsad values in analyse_params
-      variable. It also increases mask quality and small
-      improvement of Cut Scenes detection. :3
-    + Decrease coarse_max value -> 1500.
-    + Now automatically using Cubic instead of Bilinear for
-      interpolation when GPU acceleration activated.
-    + Set lambda for motion vectors pinalty value -> 10.
-    + Make SVAnalyse be able to using GPU acceleration if
-      it was Enabled.
-    + Change Default_MT_MODE -> mode 2.
-    + Use Assert() instead of Subtitle() and logic for displays
-      error and warning messages for now.
-    + Add boolean value type to warner.
-    + Move vertical stack frame mode in demo to demo_type = 2
-    + Evaluate demo types as list.
-    + Add new demo types. These are:
-        1   =   Horizontal stack frame. [Default]
-        2   =   Vertical stack frame.
-        3   =   Frame difference in chroma.
-                [requires MaskTools 2]
-      you can switch between these types with
-      demo_type = [number]
-    + Make framerate conversion in demo mode more accurate.
-    + Add subfunction nNumSeparate() for separate float from
-      its fraction.
-    + Use Round() instead of Floor() to Rounding floats.
-    + Remove ParamCustomConfig class because it will not be used
-      for futher reason, All new configurations now written
-      in ConfigurationHandler class. ;)
-    + Add clip scaling feature. To activate it, write:
-      "global scale=true" in your configuration file.
-    + Add Preset feature. To activate it, write:
-      "global preset=[number_of_preset_index]" in your
-      configuration file.
-    + Revamp version system more simple to manage. :\_/
-    + Override _init input to scaled input if scale == true.
     + Change the project name to nSVPScript.
     + Now, it is available on GitHub. :D
+    + ...
+    + more than 30+ changes has made. So, I cannot explain them
+      here :'>
+    + and More of Optimization and Addition.
+      Read Default.ini Configuration file for more info :D.
     - Remove "install.bat". 'Coz scripts can load all of
       working directory automatically now. OwO)/
     - Remove ConvertToYV12() function.
     - Remove linear_interpolate option.
     - Remove Prefetch() function from main function.
+    - ...
+    - and More :3
     # Gives all Motion search range to negative values.
     # Fix search_method 2 and 3 gives invalid motion search
       value.
     # Quality increases on Cutscene Detection and masking by
       normalize all internal value calculation more
       accurate and standarized.
+    # Over 20+ bugs fixed OwO)/
+    # ...
+    # and many of Bug Fixes! UwU)
 
 ----------------------------------------------------------------
 

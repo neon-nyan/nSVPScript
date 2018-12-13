@@ -1,0 +1,12 @@
+/*
+* nSVScript         | Licensed under The GNU GPL-3.0
+* Copyright © 2018  | SMAKTA IT Club - SMK Negeri 3 Kota Tangerang
+*/
+
+function n_isMOD(clip a, int "b")
+{
+    b = default(b, 2)
+    c = floor(a.width / b) * 2 == a.width || floor(a.height / b) * 2 == a.height
+    
+    return !c
+}

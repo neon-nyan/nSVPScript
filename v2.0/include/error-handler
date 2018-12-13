@@ -1,0 +1,35 @@
+/*
+* nSVScript         | Licensed under The GNU GPL-3.0
+* Copyright © 2018  | SMAKTA IT Club - SMK Negeri 3 Kota Tangerang
+*/
+
+import(n_defDir + "include\error-messages")
+
+function n_throwError(int "errcode", int "prior", string "errmsg")
+{
+    prior       = default(prior, 1)
+    errcode     = default(errcode, 1)
+    errstr      = default(errmsg, "")
+    errstr      = !(errstr == "") ? " [" + String(errmsg) + "]" : ""
+    
+    _prior      = prior > 0 ?           \
+                  n_eT_ERR             :\
+                  n_eT_WARN
+    _errcode    = errcode == 1 ?        \
+                  n_eM_NOTYVCLIP       :\
+                  errcode == 2 ?        \
+                  n_eM_MAXMEMORYERR    :\
+                  errcode == 3 ?        \
+                  n_eM_INTERLACEDCLIP  :\
+                  errcode == 4 ?        \
+                  n_eM_INVALIDVER      :\
+                  errcode == 5 ?        \
+                  n_eM_NOTMOD          :\
+                  errcode == 99 ?       \
+                  n_eM_NFLOAT_NOINPUT  :\
+                  errcode == 255 ?      \
+                  n_eM_UNKNOWN         :\
+                  n_eM_OK
+
+    Assert(!(prior == 1), n_eT_ERR + _errcode + errstr)
+}
